@@ -1,3 +1,14 @@
+###Unity
+Temp/*
+Library/*
+Build/*
+
+# Unignore
+*.pidb
+*.userprefs
+
+
+
 #################
 ## Eclipse
 #################
