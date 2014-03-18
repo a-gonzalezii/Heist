@@ -5,10 +5,17 @@ var speed : float = 10;
 var jumpSpeed : float = 10;
 var acceleration: float = 2;
 
+var jumpIsLocked:boolean = false;
+
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
 var action : KeyCode;
+
+
+function jumpToUnlock(){
+	jumpIsLocked = false;
+}
 
 
 function Update () {
@@ -30,8 +37,10 @@ function Update () {
 		//on the InteractableObject side there will need to be a boolean that tracks if it is currently colliding with the player. 
 		
 	}if(Input.GetKey(jump)){
-		rigidbody2D.velocity.y = jumpSpeed;
-	
+		if(!jumpIsLocked){//TODO: NEED TO CHANGE THIS FOR WHEN THEY ARE IN A SPACE THAT ONLY FITS THE USER/player icon
+			rigidbody2D.velocity.y = jumpSpeed;
+			jumpIsLocked = true;
+		}
 	}
 
 
