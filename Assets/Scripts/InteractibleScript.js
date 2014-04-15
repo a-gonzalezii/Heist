@@ -27,7 +27,7 @@ function OnTriggerEnter2D(hitInfo : Collider2D){
 	}	
 }
 //as long as youre on the button move the wall
-function OnTriggerStay2D(hitInfo: Collider2D){
+function OnTriggerStay2D(hitInfo: Collider2D){//TODO: CANNOT SET POSITION MUST SET VELOCITY
 	if(hitInfo.collider2D.tag =="Player"){
 		changedObject.transform.position = Vector3.MoveTowards(changedObject.transform.position, targetPosition, step);
 	}
