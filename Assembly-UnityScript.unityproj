@@ -50,22 +50,6 @@
      <Compile Include="Assets\Scripts\InteractibleScript.js" />
      <Compile Include="Assets\Scripts\PlatformScript.js" />
      <Compile Include="Assets\Scripts\PlayerController.js" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Player\p2_spritesheet.txt" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Mushroom expansion\PNG\spritesheet.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\aliens.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\alienBeige.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\enemies.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Items\items_spritesheet.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Tiles\tiles_spritesheet.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\alienYellow.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\HUD\hud_spritesheet.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\alienPink.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\alienGreen.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Player\p3_spritesheet.txt" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Player\p1_spritesheet.txt" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Extra animations and enemies\Spritesheets\alienBlue.xml" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\Base pack\Enemies\enemies_spritesheet.txt" />
-     <None Include="Assets\Materials\Platformer Art Complete Pack_0\license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

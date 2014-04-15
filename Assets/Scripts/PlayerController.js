@@ -10,11 +10,24 @@ var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
 
+var anim : Animator;
+
+function Start(){
+
+	// Animator 
+	anim = GetComponent(Animator);
+}
+
 function jumpToUnlock(){
 	jumpIsLocked = false;
 }
 
 function FixedUpdate () {
+	
+	// Animator 
+	var move : float = Input.GetAxis ("Horizontal");
+    anim.SetFloat("Speed", move);
+	
 	//Move Left
 	if(Input.GetKey(moveLeft)){
 		rigidbody2D.velocity.x = -speed;
