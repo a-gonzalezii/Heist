@@ -10,11 +10,12 @@ var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
 
+// Animator -- John
 var anim : Animator;
 
 function Start(){
 
-	// Animator 
+	// Animator -- John
 	anim = GetComponent(Animator);
 }
 
@@ -24,7 +25,7 @@ function jumpToUnlock(){
 
 function FixedUpdate () {
 	
-	// Animator 
+	// Animator -- John
 	var move : float = Input.GetAxis ("Horizontal");
     anim.SetFloat("Speed", move);
 	

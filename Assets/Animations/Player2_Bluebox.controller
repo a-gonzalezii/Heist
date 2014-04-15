@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Platform2_Sprites
+  m_Name: Player2_Bluebox
   serializedVersion: 2
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -25,11 +25,11 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: p1Idle
+  m_Name: p2Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 0}
+  - {fileID: 7400000, guid: a55019a5907ec49dcaf981c0b4a63440, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
