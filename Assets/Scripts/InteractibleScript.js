@@ -2,9 +2,12 @@
 
 //set in the scene
 var changedObject:GameObject;//a platform or wall - //TODO:may be able to use just the transform
-var distanceFromTop:float=3f;
 var moving: boolean = false;
-var speed: float=3;
+var speed: float = 3;
+var yDist: float = 0;
+var xDist: float = 0;
+
+
 var mainCamera:Camera;
 
 //set in start()
@@ -19,9 +22,8 @@ function Start(){
 
 	startPosition = changedObject.transform.position;
 	step = speed*Time.deltaTime;
-	//top of screen - 1/2 object height - distance from top.
-	targetPosition = new Vector3(startPosition.x,
-		mainCamera.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y-changedObject.renderer.bounds.extents.y-distanceFromTop,0f);
+	//Relative to current position, where would you like to move to
+	targetPosition = startPosition + new Vector3(xDist, yDist, 0);
 }
 //when touch button - the wall is now moving
 function OnTriggerEnter2D(hitInfo : Collider2D){

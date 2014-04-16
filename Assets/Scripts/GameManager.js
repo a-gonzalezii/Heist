@@ -30,6 +30,9 @@ function Start () {
 	//sort levels by name (alphabetically)
 	levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
 	
+	//TODO: SPACE LVLS AND AUTOGENERATE
+	
+	
 	
 }
 

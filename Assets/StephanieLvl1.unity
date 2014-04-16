@@ -465,9 +465,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedObject: {fileID: 455935618}
-  distanceFromTop: 10
   moving: 0
   speed: 3
+  yDist: -10
+  xDist: 0
   mainCamera: {fileID: 1954419871}
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
@@ -547,9 +548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedObject: {fileID: 1025098346}
-  distanceFromTop: 3
   moving: 0
   speed: 3
+  yDist: 10
+  xDist: 0
   mainCamera: {fileID: 1954419871}
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
@@ -737,9 +739,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedObject: {fileID: 1553768415}
-  distanceFromTop: 3
   moving: 0
   speed: 3
+  yDist: 10
+  xDist: 0
   mainCamera: {fileID: 1954419871}
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
@@ -956,9 +959,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedObject: {fileID: 760493910}
-  distanceFromTop: 3
   moving: 0
   speed: 3
+  yDist: 10
+  xDist: 0
   mainCamera: {fileID: 1954419871}
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
@@ -1649,9 +1653,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changedObject: {fileID: 172174969}
-  distanceFromTop: 9
   moving: 0
   speed: 3
+  yDist: 3
+  xDist: 0
   mainCamera: {fileID: 1954419871}
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
