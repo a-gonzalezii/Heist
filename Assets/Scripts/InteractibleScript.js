@@ -14,6 +14,9 @@ var startPosition: Vector3;
 
 
 function Start(){
+
+	mainCamera=Camera.main;
+
 	startPosition = changedObject.transform.position;
 	step = speed*Time.deltaTime;
 	//top of screen - 1/2 object height - distance from top.

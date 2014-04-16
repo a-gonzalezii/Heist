@@ -1,12 +1,5 @@
 ﻿#pragma strict
 
-
-
-function OnTriggerEnter2D(hitInfo : Collider2D){
-	print("here");
-}
-
-
 /*When player passes level trigger:
 	Need to move camera over;
 		Send msg to game controller to:
@@ -16,3 +9,23 @@ function OnTriggerEnter2D(hitInfo : Collider2D){
 
 
 */
+
+function OnTriggerExit2D(hitInfo : Collider2D){
+	print("enter");	
+	
+	if(hitInfo.tag=="Player"){
+	
+		var players = GameObject.FindGameObjectsWithTag("Player");
+		
+		//check both players have passed the trigger
+		for(var i=0; i<players.Length; i++){
+			if(players[i].transform.position.x < transform.position.x){
+				return;
+			}
+		}
+		//send msg to game manager telling it to pop
+		GameObject.FindGameObjectWithTag("GameController").SendMessage("nextLevel",name);	
+	
+	}
+	
+}
