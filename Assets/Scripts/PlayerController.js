@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 var speed : float = 10;
-var jumpForce: float = 1000;//high force to compensate for high gravity so player stays attached to moving objects
+var jumpForce: float = 100;//high force to compensate for high gravity so player stays attached to moving objects
 var acceleration: float = 2;
 
 var jumpIsLocked:boolean = false;
