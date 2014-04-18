@@ -3,6 +3,13 @@ Temp/*
 Library/*
 Build/*
 
+*.unityproj
+*.csproj
+*.sln
+Assembly-UnityScript.unityproj
+Assembly-UnityScript-vs.unityproj
+
+
 # Unignore
 *.pidb
 *.userprefs
