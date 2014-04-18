@@ -9,6 +9,8 @@ var jumpIsLocked:boolean = false;
 var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
+var isFacingRight : boolean = true;
+
 
 // Animator -- John
 var anim : Animator;
@@ -32,9 +34,21 @@ function FixedUpdate () {
 	//Move Left
 	if(Input.GetKey(moveLeft)){
 		rigidbody2D.velocity.x = -speed;
+	
+	if (isFacingRight == true){
+		Flip();
+		isFacingRight = false;
+	}
+	
 	//Move Right	
 	}else if(Input.GetKey(moveRight)){
-		rigidbody2D.velocity.x = speed;		
+		rigidbody2D.velocity.x = speed;	
+		
+	if (isFacingRight == false){
+	Flip();
+	isFacingRight = true;
+	}
+		
 	//Move None
 	}else{
 		rigidbody2D.velocity.x = 0;
@@ -46,3 +60,9 @@ function FixedUpdate () {
 		}
 	}
 }
+
+function Flip (){
+		var theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+		}
