@@ -35,15 +35,10 @@ function Start () {
 	
 	
 }
-
+// Delete the first level - called from LevelTrigger.js
 function nextLevel(l:String){
-
 	if(levels[1].name==l && levels.Length>2){
-		levels = levels[1:];
-		for(var i=0;i<levels.Length;i++){
-			print(levels[i].name);
-		}
-		
+		levels = levels[1:];		
 	}
 
 }
@@ -52,9 +47,9 @@ function nextLevel(l:String){
 
 function Update () {//TODO: SETUP BOUNDS ON CAMERA
 
-	//var xPos = Mathf.Abs(player1.position.x-player2.position.x)/2 + Mathf.Min(player1.position.x,player2.position.x); 
-	
+	//Set camera to the current lvl
 	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
+	//TODO: SET CAMERA BASED ON SCREEN
 	mainCamera.transform.position = new Vector3(xPos, 5 , 0) + cameraOffset;
 
 }

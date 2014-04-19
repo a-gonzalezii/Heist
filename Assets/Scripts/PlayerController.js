@@ -10,6 +10,15 @@ var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
 
+var mySprite:Sprite;
+
+function Start(){
+
+	//Find File of name ThisObj.name in the Resources folder and set it as the player sprite
+	GetComponent(SpriteRenderer).sprite = Resources.Load(name,Sprite);
+
+}
+
 
 function jumpToUnlock(){
 	jumpIsLocked = false;
