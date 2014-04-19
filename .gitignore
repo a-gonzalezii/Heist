@@ -2,8 +2,10 @@
 Temp/*
 Library/*
 Build/*
+*.csproj
+*.sln
+*.unityproj
 
-# Unignore
 *.pidb
 *.userprefs
 
