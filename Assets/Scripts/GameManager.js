@@ -54,4 +54,15 @@ function Update () {//TODO: SETUP BOUNDS ON CAMERA
 
 }
 
+function OnGUI(){
+
+	if(GUI.Button(new Rect(Screen.width-121, 35, 121, 53),"RESET")){
+		player1.position = new Vector3(platform1.transform.position.x - platform1.renderer.bounds.size.x/2+2, platform1.transform.position.y+1, 0f);
+		player2.position = new Vector3(platform2.transform.position.x - platform2.renderer.bounds.size.x/2+2, platform2.transform.position.y+1, 0f);
+		
+		levels = GameObject.FindGameObjectsWithTag("Level");
+		levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
+	}
+}
+
 
