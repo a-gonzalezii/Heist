@@ -27,7 +27,6 @@ function Start(){
 }
 //when touch button - the wall is now moving
 function OnTriggerEnter2D(hitInfo : Collider2D){
-	print("here");
 	if(hitInfo.collider2D.tag == "Player"){
 		moving = true;
 	}	

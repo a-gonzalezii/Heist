@@ -13,7 +13,7 @@ var jump : KeyCode;
 function Start(){
 
 	//Find File of name ThisObj.name in the Resources folder and set it as the player sprite
-	GetComponent(SpriteRenderer).sprite = Resources.Load(name,Sprite);
+	GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+name,Sprite);
 
 }
 
