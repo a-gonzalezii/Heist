@@ -2,7 +2,6 @@
 
 var speed : float = 10;
 var jumpForce: float = 100;//high force to compensate for high gravity so player stays attached to moving objects
-var acceleration: float = 2;
 
 var jumpIsLocked:boolean = false;
 
@@ -11,9 +10,6 @@ var moveRight : KeyCode;
 var jump : KeyCode;
 
 function Start(){
-
-	//Find File of name ThisObj.name in the Resources folder and set it as the player sprite
-	GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+name,Sprite);
 
 }
 
@@ -39,4 +35,14 @@ function FixedUpdate () {
 			jumpIsLocked = true;
 		}
 	}
+}
+
+function setVariables(variables:Array){//, rightKey:KeyCode, jumpKey:KeyCode, newSpeed:float, jumpF:float){
+	moveLeft  = variables[0];
+	moveRight = variables[1];
+	jump      = variables[2];
+	speed     = variables[3];
+	jumpForce = variables[4];
+
+
 }

@@ -357,7 +357,6 @@ MonoBehaviour:
   platforms: []
   levels: []
   players: []
-  levelSize: 
 --- !u!1 &172174969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,11 +1426,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 1000
-  acceleration: 2
   jumpIsLocked: 0
-  moveLeft: 276
-  moveRight: 275
-  jump: 273
+  moveLeft: 0
+  moveRight: 0
+  jump: 0
 --- !u!212 &903556945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2217,11 +2215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 1000
-  acceleration: 2
   jumpIsLocked: 0
-  moveLeft: 97
-  moveRight: 100
-  jump: 119
+  moveLeft: 0
+  moveRight: 0
+  jump: 0
 --- !u!212 &1185351412
 SpriteRenderer:
   m_ObjectHideFlags: 0

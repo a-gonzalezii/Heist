@@ -24,7 +24,7 @@ function Awake(){
 
 	//SET GLOBALS: PLATFORMS, CAMERA, PLAYERS, LEVELS
 	//		SET GLOBAL ABSOLUTES - TRANSFORM, SPRITERENDER, MONOSCRIPT
-	//TODO: SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
+	//		SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
 	//								PLATFORM()
 	//								LEVEL()
 	
@@ -45,8 +45,9 @@ function Awake(){
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
-		platform_i.AddComponent("PlatformScript");
-		//TODO: TO UPDATE VARIABLES NEED TO IMPLEMENT A SENDMESSAGE / UPDATEVARIABLES
+		if(i > 0 && platform_i.GetComponent("PlatformScript") == null){
+			platform_i.AddComponent("PlatformScript");
+		}
 		//POSITION
 		//Set platforms so that their start position(far left side) is at 0f and they are evenly spaced through the center of the screen. 
 			//set the 3 heights to top, middle, bottom (1f-i/2f) - then shift up the top 0, the middle 1/25, bottom 2/25 of screen height
@@ -61,11 +62,29 @@ function Awake(){
 		//SPRITE
 		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+player_i.name,Sprite);
 		//MATERIAL / SCRIPT
+		if(player_i.GetComponent("PlayerController") == null){
+			player_i.AddComponent("PlayerController");
+		}
 		
 		//POSITION
 		var posX = platforms[i+1].transform.position.x - platforms[i+1].renderer.bounds.extents.x + 2;
 		var posY = platforms[i+1].transform.position.y+1;
 		player_i.transform.position = new Vector3(posX, posY, 0f);
+		
+		//setVariables(leftKey, rightKey, jumpKey, newSpeed, jumpF)
+		var variablesToSet = new Array();
+		if(i==0){		//KeyCode.A,         KeyCode.D,          KeyCode.W,       10, 1000
+			variablesToSet.push(KeyCode.A);
+			variablesToSet.push(KeyCode.D);
+			variablesToSet.push(KeyCode.W);
+		}else{			//KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, 10, 1000
+			variablesToSet.push(KeyCode.LeftArrow);
+			variablesToSet.push(KeyCode.RightArrow);
+			variablesToSet.push(KeyCode.UpArrow);
+		}
+		variablesToSet.push(10);
+		variablesToSet.push(1000);
+		player_i.SendMessage("setVariables", variablesToSet);
 		
 	}
 			
@@ -81,6 +100,9 @@ function Awake(){
 		//SPRITE - WILL BE NONE FOR FINAL EDIT - SAME FOR MATERIAL
 		level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
 		//SCRIPT
+		if(player_i.GetComponent("LevelTrigger") == null){
+			player_i.AddComponent("LevelTrigger");
+		}
 		
 		//POSITION
 		level_i.transform.position = new Vector3(positionFromStart, level_i.renderer.bounds.extents.y, 0f);
@@ -122,12 +144,10 @@ function nextLevel(l:String){
 
 
 
-function Update () {//TODO: SETUP BOUNDS ON CAMERA
-
+function Update () {//TODO: ADJUST CAMERA
 
 	//Set camera to the current lvl
 	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
-	//TODO: SET CAMERA BASED ON SCREEN
 	mainCamera.transform.position = new Vector3(xPos, 5 , 0) + cameraOffset;
 
 }

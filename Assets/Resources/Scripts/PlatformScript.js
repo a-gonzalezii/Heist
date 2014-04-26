@@ -1,7 +1,5 @@
 ﻿#pragma strict
 
-//TODO : WHEN PLAYER ON PLATFORM AND PLATFORM IS MOVING UP, CANNOT JUMP MORE THAN ONCE. - NOT DETECTING COLLISION
-
 function OnCollisionEnter2D (hitInfo : Collision2D){
 	//When landing from a jump, let the player jump again
 	if(hitInfo.collider.tag == "Player"){
@@ -20,5 +18,4 @@ function OnCollisionEnter2D (hitInfo : Collision2D){
 		}
 		hitInfo.gameObject.SendMessage("jumpToUnlock");
 	}
-
 }
