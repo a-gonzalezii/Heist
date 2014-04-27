@@ -1,5 +1,4 @@
 ﻿#pragma strict
-#pragma downcast
 
 //var player1: Transform;
 //var player2: Transform;
@@ -11,27 +10,22 @@ var platforms: GameObject[];
 var levels:GameObject[];
 var players:GameObject[];
 
+//GENERAL VARIABLES THAT POP UP OFTEN
+var platformExtents:Vector3;
+var screenHeight:float;
+
+
 
 function Awake(){
 
 	//TODO: UPDATE AS WE BUILD MORE LEVELS
 	//
 
-	//GENERAL VARIABLES THAT POP UP OFTEN
-	var platformExtents:Vector3;
-	var screenHeight:float;
-
 	//ARRAYS OF GLOBAL AND LOCAL INFORMATION
 	//TODO: FILL
-	var levelSize = [28,23,23,41,46,0];//space between this and the next level - MUST KEEP EXTRA 0 AT THE END
-	//Array(Map{Type:Array(Map{})})
-	/*var level1_childrenMapping = {};
-				var level1_Gate1Mapping = {};
-				level1_GateMapping["Position"] = new Vector3(8.8,-.13,0);
-			var level1_GateArray = [level1_Gate1Mapping, level1_Gate2Mapping];
-		level1_childrenMapping["Gate"] = level1_GateArray;
-	var levelArrangement = [];
-*/
+	
+
+
 
 	//SET GLOBALS: PLATFORMS, CAMERA, PLAYERS, LEVELS
 	//		SET GLOBAL ABSOLUTES - TRANSFORM, SPRITERENDER, MONOSCRIPT
@@ -42,14 +36,105 @@ function Awake(){
 	
 	//CAMERA
 	mainCamera = Camera.main;
+	//PLATFORMS
+	screenHeight = mainCamera.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y;
+	instantiatePlatforms();
+	//PLAYERS
+	instantiatePlayers();
+	//LEVELS
+	instantiateLevels();
 	
+	//Array(Map{Type:Array(Map{})})
+	//TODO: CHANGE HARD CODED VALUES
+	
+				var level1_Button1Mapping = {};
+				level1_Button1Mapping["Position"] = new Vector3(5f, platformExtents.y, 0f);
+				level1_Button1Mapping["Sprite"]   = "Materials/GreenButton";
+				level1_Button1Mapping["Script"]   = new Array("InteractibleScript", [3,levels[0].renderer.bounds.extents.y,0]);
+				
+				var level1_Button2Mapping = {};
+				level1_Button2Mapping["Position"] = new Vector3(5f,platformExtents.y-levels[0].renderer.bounds.extents.y, 0f);
+				level1_Button2Mapping["Sprite"]   = "Materials/GreenButton";
+				level1_Button2Mapping["Script"]   = new Array("InteractibleScript", [3,levels[0].renderer.bounds.extents.y,0]);
+		
+			var level1_ButtonArray = [level1_Button1Mapping, level1_Button2Mapping];
+	
+				var level1_Gate2Mapping = {};
+				level1_Gate2Mapping["Position"] = new Vector3(16.7,0,0);
+				level1_Gate2Mapping["Sprite"]   = "Materials/GreenButton";
+				level1_Gate2Mapping["Script"]   = new Array("PlatformScript", []);
+				
+				var level1_Gate1Mapping = {};
+				level1_Gate1Mapping["Position"] = new Vector3(8.8,0,0);
+				level1_Gate1Mapping["Sprite"]   = "Materials/GreenButton";
+				level1_Gate1Mapping["Script"]   = new Array("PlatformScript", []);
+				
+			var level1_GateArray = [level1_Gate1Mapping, level1_Gate2Mapping];
+		var level1_childrenMapping = {};
+		level1_childrenMapping["Button"] = level1_ButtonArray;
+		level1_childrenMapping["Gate"] = level1_GateArray;
+	var levelArrangement = [level1_childrenMapping];
+			
+	// 		FOR EACH LEVEL { FOR EACH CHILD { 
+	//TODO:		SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
+	//			SET VARIABLES - BUTTON(CHANGED_OBJ, SPEED, XDIST, YDIST)
+	//							GATE()
+	
+	for(var i=0;i<levelArrangement.Length;i++){
+	
+		var level_i = levels[i];
+		
+		var name:String[];
+		var childType:String;
+		var childTypeIndex:int;
+		
+		var levelMap:Hashtable;
+		var childTypeArray:Array;
+		var componentTypeMap:Hashtable;
+		
+		var testing = {};
+		
+		for(var child: Transform in level_i.transform){
+			name = child.name.Split();
+			childType = name[0];
+			childTypeIndex = parseInt(name[1])-1;		
+			
+			levelMap = levelArrangement[i];// gives up map{type:list}
+			childTypeArray = levelMap[childType];
+			
+			componentTypeMap = childTypeArray[childTypeIndex];
+			//POSITION
+			print(componentTypeMap["Position"]);
+			print(componentTypeMap["Position"]);
+			child.transform.position = componentTypeMap["Position"];
+			
+			//SPRITE
+			//child.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			//SCRIPT
+			//if("Script" in componentTypeMap){
+			//	if(child.getComponent(componentTypeMap["Script"][0]==null){ child.addComponent(componentTypeMap["Script"][0])}
+			//	child.SendMessage("setVariables",componentTypeMap["Script"][1]);
+			//}
+		
+		}
+	}
+	
+								
+
+
+
+
+	//TODO: CHECK IF COMPONENTS ALREADY EXIST
+
+}
+
+
+function instantiatePlatforms(){
 	//PLATFORMS
 	platforms = GameObject.FindGameObjectsWithTag("Platform");//get all platforms
 	platforms.Sort(platforms, function(g1,g2) String.Compare(g1.name, g2.name));//sort alphabetically
-	
 	platformExtents = platforms[0].renderer.bounds.extents;
-	screenHeight = mainCamera.ScreenToWorldPoint(new Vector3(0f,Screen.height,0f)).y;
-	
+		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
 		//SET SPRITE
@@ -65,12 +150,13 @@ function Awake(){
 			//set the 3 heights to top, middle, bottom (1f-i/2f) - then shift up the top 0, the middle 1/25, bottom 2/25 of screen height
 		platform_i.transform.position = new Vector3(platformExtents.x, screenHeight*(1f+((i%3)/25f)-(i/2f)),0f);
 	}
+}
 
-
+function instantiatePlayers(){
 	//PLAYERS
 	players = GameObject.FindGameObjectsWithTag("Player");
 	players.Sort(players, function(g1,g2) String.Compare(g1.name, g2.name));
-	for(i=0; i<players.Length; i++){
+	for(var i=0; i<players.Length; i++){
 		var player_i = players[i];
 		//SPRITE
 		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+player_i.name,Sprite);
@@ -100,76 +186,34 @@ function Awake(){
 		player_i.SendMessage("setVariables", variablesToSet);
 		
 	}
-			
-				
+}
+
+function instantiateLevels(){
+
+	//space between this and the next level - MUST KEEP EXTRA 0 AT THE END
+	var levelSize=[28,23,23,41,46,0];
+
 	//LEVELS	
 	levels = GameObject.FindGameObjectsWithTag("Level");
 	levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
 	
 	var positionFromStart = 0;
 	
-	for(i=0;i<levels.Length; i++){
+	for(var i=0;i<levels.Length; i++){
 		var level_i = levels[i];
 		//SPRITE - WILL BE NONE FOR FINAL EDIT - SAME FOR MATERIAL
 		level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
 		//SCRIPT
-		if(player_i.GetComponent("LevelTrigger") == null){
-			player_i.AddComponent("LevelTrigger");
+		if(level_i.GetComponent("LevelTrigger") == null){
+			level_i.AddComponent("LevelTrigger");
 		}
 		
 		//POSITION
 		level_i.transform.localScale = new Vector3(1f,2*(platforms[0].transform.position.y-platforms[2].transform.position.y-platforms[0].renderer.bounds.size.y),1f);
 		level_i.transform.position = new Vector3(positionFromStart, platforms[1].transform.position.y, 0f);
 		positionFromStart += levelSize[i];
-
-
-		// 		FOR EACH LEVEL { FOR EACH CHILD { 
-		//TODO:		SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
-		//			SET VARIABLES - BUTTON(CHANGED_OBJ, SPEED, XDIST, YDIST)
-		//							GATE()
-		var name:String[];
-		var childType:String;
-		var childTypeIndex:int;
-		
-		var levelMap:Hashtable;
-		var childTypeArray:Array;
-		var componentTypeMap:Hashtable;
-		
-		var testing = {};
-		
-		for(var child: Transform in level_i.transform){
-			name = child.name.Split();
-			childType = name[0];
-			childTypeIndex = parseInt(name[1]);		
-			
-			//levelMap = levelArrangement[i];// gives up map{type:list}
-			//childTypeArray = levelMap[childType];
-			//componentTypeMap = childTypeArray[childTypeIndex];
-			//POSITION
-			//child.transform.position = componentTypeMap["Position"];
-			//SPRITE
-			//child.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
-			//SCRIPT
-			//if("Script" in componentTypeMap){
-			//	if(child.getComponent(componentTypeMap["Script"][0]==null){ child.addComponent(componentTypeMap["Script"][0])}
-			//	child.SendMessage("setVariables",componentTypeMap["Script"][1]);
-			//}
-		
-		}
-				
-								
 	}
-									
-
-
-
-
-	//TODO: CHECK IF COMPONENTS ALREADY EXIST
-
 }
-
-
-
 
 function Start () {
 
