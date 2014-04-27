@@ -12,7 +12,6 @@ function OnCollisionEnter2D (hitInfo : Collision2D){
 		//only if player is on top of a platform can they jump again
 		for(var i=0;i < cp.length;i++){
 			if(cp[i].point.y > center_y ){
-				print("Player is not on top");
 				return;
 			}
 		}

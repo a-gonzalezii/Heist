@@ -174,7 +174,7 @@ GameObject:
   - 61: {fileID: 88632261}
   - 114: {fileID: 88632260}
   m_Layer: 0
-  m_Name: Gate11
+  m_Name: Gate 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -369,7 +369,7 @@ GameObject:
   - 61: {fileID: 172174971}
   - 114: {fileID: 172174970}
   m_Layer: 0
-  m_Name: Gate5
+  m_Name: Gate 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,7 +521,7 @@ GameObject:
   - 61: {fileID: 346630139}
   - 114: {fileID: 346630138}
   m_Layer: 0
-  m_Name: Gate8
+  m_Name: Gate 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ GameObject:
   - 61: {fileID: 455935620}
   - 114: {fileID: 455935619}
   m_Layer: 0
-  m_Name: Gate4
+  m_Name: Gate 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,7 +669,7 @@ GameObject:
   - 61: {fileID: 495563959}
   - 114: {fileID: 495563958}
   m_Layer: 0
-  m_Name: Gate11
+  m_Name: Gate 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,7 +743,7 @@ GameObject:
   - 114: {fileID: 502607395}
   - 61: {fileID: 502607394}
   m_Layer: 0
-  m_Name: Button8
+  m_Name: Button 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -826,7 +826,7 @@ GameObject:
   - 114: {fileID: 545398746}
   - 61: {fileID: 545398745}
   m_Layer: 0
-  m_Name: Button6
+  m_Name: Button 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +909,7 @@ GameObject:
   - 61: {fileID: 547772290}
   - 114: {fileID: 547772289}
   m_Layer: 0
-  m_Name: StationaryPlatform2
+  m_Name: StationaryPlatform 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,7 +983,7 @@ GameObject:
   - 114: {fileID: 556550859}
   - 61: {fileID: 556550858}
   m_Layer: 0
-  m_Name: Button4
+  m_Name: Button 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - 114: {fileID: 581989864}
   - 61: {fileID: 581989863}
   m_Layer: 0
-  m_Name: Button2
+  m_Name: Button 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1149,7 @@ GameObject:
   - 61: {fileID: 760493912}
   - 114: {fileID: 760493911}
   m_Layer: 0
-  m_Name: Gate3
+  m_Name: Gate 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1223,7 +1223,7 @@ GameObject:
   - 61: {fileID: 826791560}
   - 114: {fileID: 826791561}
   m_Layer: 0
-  m_Name: Button1
+  m_Name: Button 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1476,7 +1476,7 @@ GameObject:
   - 114: {fileID: 930327788}
   - 61: {fileID: 930327787}
   m_Layer: 0
-  m_Name: Button9
+  m_Name: Button 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1559,7 +1559,7 @@ GameObject:
   - 114: {fileID: 969047517}
   - 61: {fileID: 969047516}
   m_Layer: 0
-  m_Name: Button10
+  m_Name: Button 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1642,7 +1642,7 @@ GameObject:
   - 114: {fileID: 974145373}
   - 61: {fileID: 974145372}
   m_Layer: 0
-  m_Name: Button3
+  m_Name: Button 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1725,7 +1725,7 @@ GameObject:
   - 61: {fileID: 984719409}
   - 114: {fileID: 984719408}
   m_Layer: 0
-  m_Name: Gate7
+  m_Name: Gate 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1799,7 +1799,7 @@ GameObject:
   - 61: {fileID: 1000991801}
   - 114: {fileID: 1000991800}
   m_Layer: 0
-  m_Name: StationaryPlatform
+  m_Name: StationaryPlatform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1873,7 +1873,7 @@ GameObject:
   - 61: {fileID: 1005634507}
   - 114: {fileID: 1005634506}
   m_Layer: 0
-  m_Name: StationaryPlatform
+  m_Name: StationaryPlatform 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1947,7 +1947,7 @@ GameObject:
   - 61: {fileID: 1009844558}
   - 114: {fileID: 1009844557}
   m_Layer: 0
-  m_Name: Gate10
+  m_Name: Gate 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2021,7 +2021,7 @@ GameObject:
   - 61: {fileID: 1025098348}
   - 114: {fileID: 1025098347}
   m_Layer: 0
-  m_Name: Gate2
+  m_Name: Gate 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2095,7 +2095,7 @@ GameObject:
   - 61: {fileID: 1109583126}
   - 114: {fileID: 1109583125}
   m_Layer: 0
-  m_Name: Gate11
+  m_Name: Gate 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2265,7 +2265,7 @@ GameObject:
   - 114: {fileID: 1329514940}
   - 61: {fileID: 1329514939}
   m_Layer: 0
-  m_Name: Button7
+  m_Name: Button 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2422,7 +2422,7 @@ GameObject:
   - 61: {fileID: 1448747929}
   - 114: {fileID: 1448747928}
   m_Layer: 0
-  m_Name: Gate11
+  m_Name: Gate 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2646,7 +2646,7 @@ GameObject:
   - 61: {fileID: 1538990440}
   - 114: {fileID: 1538990439}
   m_Layer: 0
-  m_Name: Gate9
+  m_Name: Gate 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2720,7 +2720,7 @@ GameObject:
   - 61: {fileID: 1553768418}
   - 114: {fileID: 1553768419}
   m_Layer: 0
-  m_Name: Gate1
+  m_Name: Gate 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2794,7 +2794,7 @@ GameObject:
   - 114: {fileID: 1782106907}
   - 61: {fileID: 1782106906}
   m_Layer: 0
-  m_Name: Button11
+  m_Name: Button 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2956,7 +2956,7 @@ GameObject:
   - 61: {fileID: 1875929270}
   - 114: {fileID: 1875929269}
   m_Layer: 0
-  m_Name: Gate6
+  m_Name: Gate 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3172,7 +3172,7 @@ GameObject:
   - 114: {fileID: 2041131175}
   - 61: {fileID: 2041131174}
   m_Layer: 0
-  m_Name: Button5
+  m_Name: Button 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3255,7 +3255,7 @@ GameObject:
   - 61: {fileID: 2130104973}
   - 114: {fileID: 2130104972}
   m_Layer: 0
-  m_Name: Gate11
+  m_Name: Gate 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

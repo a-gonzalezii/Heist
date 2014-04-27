@@ -11,8 +11,7 @@
 */
 
 function OnTriggerExit2D(hitInfo : Collider2D){
-	print("enter");	
-	
+
 	if(hitInfo.tag=="Player"){
 	
 		var players = GameObject.FindGameObjectsWithTag("Player");
