@@ -134,14 +134,15 @@ function Awake(){
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
 
+			//SPRITE
+			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			
 			//POSITION
 			//TODO: CHANGE TO level_i.transform.position + componentTypeMap[Position]
 			positionTypeCast = componentTypeMap["Position"];
 			child.transform.position = level_i.transform.position + positionTypeCast;
 			child.transform.position.y += child.renderer.bounds.extents.y;
 			
-			//SPRITE
-			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
 			//SCRIPT - TODO:NOT WORKING
 			scriptTypeCast = componentTypeMap["Script"];
 			if("Script" in componentTypeMap){
@@ -170,12 +171,12 @@ function instantiatePlatforms(){
 	//PLATFORMS
 	platforms = GameObject.FindGameObjectsWithTag("Platform");//get all platforms
 	platforms.Sort(platforms, function(g1,g2) String.Compare(g1.name, g2.name));//sort alphabetically
-	platformExtents = platforms[0].renderer.bounds.extents;
 		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
 		//SET SPRITE
-		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
+		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform2",Sprite);
+		platformExtents = platform_i.renderer.bounds.extents;
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
