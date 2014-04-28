@@ -174,8 +174,8 @@ function instantiatePlatforms(){
 		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
-		//SET SPRITE
-		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform2",Sprite);
+		//SET SPRITE -- platform2 demension = 7000 × 70 px 
+		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
 		platformExtents = platform_i.renderer.bounds.extents;
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
