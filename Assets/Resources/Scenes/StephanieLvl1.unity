@@ -1151,7 +1151,7 @@ GameObject:
   - 61: {fileID: 760493912}
   - 114: {fileID: 760493911}
   m_Layer: 0
-  m_Name: Gate 3
+  m_Name: Gate 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1623,7 +1623,7 @@ GameObject:
   - 114: {fileID: 974145373}
   - 61: {fileID: 974145372}
   m_Layer: 0
-  m_Name: Button 3
+  m_Name: Button 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
