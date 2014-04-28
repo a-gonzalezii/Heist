@@ -197,7 +197,7 @@ function instantiatePlayers(){
 	for(var i=0; i<players.Length; i++){
 		var player_i = players[i];
 		//SPRITE
-		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+player_i.name,Sprite);
+		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/p1_idle",Sprite);
 		//MATERIAL / SCRIPT
 		if(player_i.GetComponent("PlayerController") == null){
 			player_i.AddComponent("PlayerController");
