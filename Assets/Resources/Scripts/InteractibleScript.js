@@ -22,6 +22,7 @@ function Start(){
 
 	startPosition = changedObject.transform.position;
 	step = speed*Time.deltaTime;
+	
 	//Relative to current position, where would you like to move to
 	targetPosition = startPosition + new Vector3(xDist, yDist, 0);
 }
@@ -65,4 +66,15 @@ function FixedUpdate(){
 
 }
 
+//INPUT: [CHANGEDOBJECT:STRING, SPEED:FLOAT, YDIST:FLOAT, XDIST:FLOAT]
+function setVariables(variables:Array){
+
+	changedObject = GameObject.Find(variables[0]);
+	speed = variables[1];
+	yDist = variables[2];
+	xDist = variables[3];
+
+	//Relative to current position, where would you like to move to
+	targetPosition = startPosition + new Vector3(xDist, yDist, 0);
+}
 

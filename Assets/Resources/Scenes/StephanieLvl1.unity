@@ -1223,7 +1223,6 @@ GameObject:
   - 4: {fileID: 826791559}
   - 212: {fileID: 826791558}
   - 61: {fileID: 826791560}
-  - 114: {fileID: 826791561}
   m_Layer: 0
   m_Name: Button 1
   m_TagString: Untagged
@@ -1276,26 +1275,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .5, y: .209999993}
   m_Center: {x: 0, y: 0}
---- !u!114 &826791561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 826791557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changedObject: {fileID: 1553768415}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &858838936
 GameObject:
   m_ObjectHideFlags: 0

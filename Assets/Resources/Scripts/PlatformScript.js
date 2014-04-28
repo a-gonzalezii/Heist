@@ -18,3 +18,5 @@ function OnCollisionEnter2D (hitInfo : Collision2D){
 		hitInfo.gameObject.SendMessage("jumpToUnlock");
 	}
 }
+
+function setVariables(variables:Array){}

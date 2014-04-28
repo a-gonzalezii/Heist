@@ -1,4 +1,5 @@
 ﻿#pragma strict
+import System.Linq;
 
 //var player1: Transform;
 //var player2: Transform;
@@ -43,31 +44,37 @@ function Awake(){
 	instantiatePlayers();
 	//LEVELS
 	instantiateLevels();
+	var bottomPlatformFloor = platforms[2].renderer.bounds.max.y;
+	var topPlatformFloor = platforms[1].renderer.bounds.max.y;
 	
 	//Array(Map{Type:Array(Map{})})
 	//TODO: CHANGE HARD CODED VALUES
 	
 				var level1_Button1Mapping = {};
-				level1_Button1Mapping["Position"] = new Vector3(5f, platformExtents.y, 0f);
+				level1_Button1Mapping["Position"] = new Vector3(5f, topPlatformFloor, 0f);
 				level1_Button1Mapping["Sprite"]   = "Materials/GreenButton";
-				level1_Button1Mapping["Script"]   = new Array("InteractibleScript", [3,levels[0].renderer.bounds.extents.y,0]);
+				level1_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level1_Button1Mapping["Variables"] = ["Next_Level0/Gate 1",3,4,0];
 				
 				var level1_Button2Mapping = {};
-				level1_Button2Mapping["Position"] = new Vector3(5f,platformExtents.y-levels[0].renderer.bounds.extents.y, 0f);
+				level1_Button2Mapping["Position"] = new Vector3(5f,bottomPlatformFloor, 0f);
 				level1_Button2Mapping["Sprite"]   = "Materials/GreenButton";
-				level1_Button2Mapping["Script"]   = new Array("InteractibleScript", [3,levels[0].renderer.bounds.extents.y,0]);
+				level1_Button2Mapping["Script"]   = "InteractibleScript";
+				level1_Button2Mapping["Variables"] = ["Next_Level0/Gate 2",3,4,0];
 		
 			var level1_ButtonArray = [level1_Button1Mapping, level1_Button2Mapping];
 	
 				var level1_Gate2Mapping = {};
-				level1_Gate2Mapping["Position"] = new Vector3(16.7,0,0);
+				level1_Gate2Mapping["Position"] = new Vector3(16.7,bottomPlatformFloor,0);
 				level1_Gate2Mapping["Sprite"]   = "Materials/GreenButton";
-				level1_Gate2Mapping["Script"]   = new Array("PlatformScript", []);
+				level1_Gate2Mapping["Script"]   = "PlatformScript";//, []];
+				level1_Gate2Mapping["Variables"] = [];
 				
 				var level1_Gate1Mapping = {};
-				level1_Gate1Mapping["Position"] = new Vector3(8.8,0,0);
+				level1_Gate1Mapping["Position"] = new Vector3(8.8,bottomPlatformFloor,0);
 				level1_Gate1Mapping["Sprite"]   = "Materials/GreenButton";
-				level1_Gate1Mapping["Script"]   = new Array("PlatformScript", []);
+				level1_Gate1Mapping["Script"]   = "PlatformScript";//, []];
+				level1_Gate1Mapping["Variables"] = [];
 				
 			var level1_GateArray = [level1_Gate1Mapping, level1_Gate2Mapping];
 		var level1_childrenMapping = {};
@@ -76,7 +83,7 @@ function Awake(){
 	var levelArrangement = [level1_childrenMapping];
 			
 	// 		FOR EACH LEVEL { FOR EACH CHILD { 
-	//TODO:		SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
+	//			SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
 	//			SET VARIABLES - BUTTON(CHANGED_OBJ, SPEED, XDIST, YDIST)
 	//							GATE()
 	
@@ -93,9 +100,11 @@ function Awake(){
 		var componentTypeMap:Hashtable;
 		
 		var testing = {};
-		
+		var arrayCast:Array;
+		var scriptTypeCast:String;
 		for(var child: Transform in level_i.transform){
 			name = child.name.Split();
+		
 			childType = name[0];
 			childTypeIndex = parseInt(name[1])-1;		
 			
@@ -103,17 +112,21 @@ function Awake(){
 			childTypeArray = levelMap[childType];
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
+
 			//POSITION
-			print(componentTypeMap["Position"]);
-			print(componentTypeMap["Position"]);
 			child.transform.position = componentTypeMap["Position"];
 			
 			//SPRITE
-			//child.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
-			//SCRIPT
-			//if("Script" in componentTypeMap){
-			//	if(child.getComponent(componentTypeMap["Script"][0]==null){ child.addComponent(componentTypeMap["Script"][0])}
-			//	child.SendMessage("setVariables",componentTypeMap["Script"][1]);
+			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			//SCRIPT - TODO:NOT WORKING
+			scriptTypeCast = componentTypeMap["Script"];
+			if("Script" in componentTypeMap){
+				if(child.gameObject.GetComponent(scriptTypeCast)==null){ 
+					child.gameObject.AddComponent(scriptTypeCast);
+				}
+			}
+			arrayCast = componentTypeMap["Variables"];
+			child.SendMessage("setVariables",arrayCast);
 			//}
 		
 		}
