@@ -349,11 +349,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 162819258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46b6834c38101248b48c5968d842158, type: 3}
+  m_Script: {fileID: 11500000, guid: 06de204a09e1b49d591ba27f2ceb20f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1954419871}
-  cameraOffset: {x: 0, y: 5, z: -10}
+  mainCamera: {fileID: 0}
+  cameraOffset: {x: 0, y: 0, z: -10}
   platforms: []
   levels: []
   players: []
@@ -784,15 +784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 346630136}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &502607396
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -867,15 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 1875929267}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &545398747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1013,15 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 455935618}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &556550860
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1096,15 +1069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 1025098346}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &581989865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1405,12 +1369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8f8e71b01b66e4f8d3f654b86a60b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 1000
-  jumpIsLocked: 0
-  moveLeft: 0
-  moveRight: 0
-  jump: 0
 --- !u!212 &903556945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1496,15 +1454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 1538990437}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &930327789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1579,15 +1528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 1009844555}
-  moving: 0
-  speed: 4
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &969047518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1651,15 +1591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 760493910}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &974145374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2194,12 +2125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8f8e71b01b66e4f8d3f654b86a60b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 1000
-  jumpIsLocked: 0
-  moveLeft: 0
-  moveRight: 0
-  jump: 0
 --- !u!212 &1185351412
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2274,15 +2199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 984719406}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &1329514941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2814,15 +2730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 1448747926}
-  moving: 0
-  speed: 1
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &1782106908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3181,15 +3088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9c0d7bac5ab4f8031b575bfe5581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedObject: {fileID: 172174969}
-  moving: 0
-  speed: 3
-  yDist: 0
-  xDist: 0
-  mainCamera: {fileID: 1954419871}
-  targetPosition: {x: 0, y: 0, z: 0}
-  step: 0
-  startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &2041131176
 SpriteRenderer:
   m_ObjectHideFlags: 0
