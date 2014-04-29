@@ -48,6 +48,7 @@ function Awake(){
 	//			Examples are {Position: Vector3 Position; Sprite: String SpriteLocation; Variables: Array of Variables for Method setVariables(Array)}
 	//TODO: CHANGE HARD CODED VALUES
 	//TODO: "SCALE" = Vector3()
+	//TODO: PHYSICS MATERIAL
 	
 	//LEVEL 3
 				var level3_Button1Mapping = {};
@@ -169,16 +170,16 @@ function Awake(){
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
 
+			//SPRITE
+			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			
 			//POSITION
 			//Input is relative to level position (positionFromStart, middle of center platform)
 			//	Should also be where you want the center bottom of the sprite to be
 			positionTypeCast = componentTypeMap["Position"];
 			child.transform.position = level_i.transform.position + positionTypeCast;
 			child.transform.position.y += child.renderer.bounds.extents.y;
-			
-			//SPRITE
-			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
-			//SCRIPT
+
 			scriptTypeCast = componentTypeMap["Script"];
 			if("Script" in componentTypeMap){
 				if(child.gameObject.GetComponent(scriptTypeCast)==null){ 
@@ -199,12 +200,12 @@ function instantiatePlatforms(){
 	//PLATFORMS
 	platforms = GameObject.FindGameObjectsWithTag("Platform");//get all platforms
 	platforms.Sort(platforms, function(g1,g2) String.Compare(g1.name, g2.name));//sort alphabetically
-	platformExtents = platforms[0].renderer.bounds.extents;
 		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
-		//SET SPRITE
+		//SET SPRITE TODO -- platform2 demension = 7000 × 70 px 
 		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
+		platformExtents = platform_i.renderer.bounds.extents;
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
@@ -225,7 +226,7 @@ function instantiatePlayers(){
 	for(var i=0; i<players.Length; i++){
 		var player_i = players[i];
 		//SPRITE
-		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+player_i.name,Sprite);
+		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/p1_idle",Sprite);
 		//MATERIAL / SCRIPT
 		if(player_i.GetComponent("PlayerController") == null){
 			player_i.AddComponent("PlayerController");
