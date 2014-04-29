@@ -37,6 +37,9 @@ function Awake(){
 	instantiatePlayers();
 	//LEVELS
 	instantiateLevels();
+	//Set Camera
+	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
+	mainCamera.transform.position = new Vector3(xPos, screenHeight/2 , 0) + cameraOffset;
 	var bottomPlatformFloor = -levels[0].renderer.bounds.extents.y;
 	var topPlatformFloor = platforms[1].renderer.bounds.extents.y;
 	
@@ -198,12 +201,21 @@ function instantiatePlatforms(){
 	//PLATFORMS
 	platforms = GameObject.FindGameObjectsWithTag("Platform");//get all platforms
 	platforms.Sort(platforms, function(g1,g2) String.Compare(g1.name, g2.name));//sort alphabetically
+	
+	var reSizingCollisionBox:Vector3;
 		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
 		//SET SPRITE TODO -- platform2 demension = 7000 × 70 px 
-		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
+		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform1",Sprite);
 		platformExtents = platform_i.renderer.bounds.extents;
+		
+		//resizing collider
+		reSizingCollisionBox = new Vector3(platformExtents.x/platform_i.transform.localScale.x, platformExtents.y/platform_i.transform.localScale.y,platformExtents.z/platform_i.transform.localScale.z);
+		platform_i.GetComponent(BoxCollider2D).size = (reSizingCollisionBox*2);	
+		
+		
+		
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
@@ -231,7 +243,7 @@ function instantiatePlayers(){
 		}
 		
 		//POSITION
-		var posX = platforms[i+1].transform.position.x - platformExtents.x + 2;
+		var posX = platforms[i+1].transform.position.x - platforms[i+1].renderer.bounds.extents.x + 2;
 		var posY = platforms[i+1].transform.position.y+1;
 		player_i.transform.position = new Vector3(posX, posY, 0f);
 		
@@ -302,7 +314,7 @@ function Update () {
 
 	//Set camera to the current lvl
 	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
-	mainCamera.transform.position = new Vector3(xPos, 5 , 0) + cameraOffset;
+	mainCamera.transform.position.x = xPos;
 
 }
 
