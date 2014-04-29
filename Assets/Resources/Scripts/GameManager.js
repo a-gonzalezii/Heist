@@ -1,5 +1,5 @@
 ﻿#pragma strict
-import System.Linq;
+//import System.Linq;
 
 //var player1: Transform;
 //var player2: Transform;
@@ -22,12 +22,6 @@ function Awake(){
 	//TODO: UPDATE AS WE BUILD MORE LEVELS
 	//
 
-	//ARRAYS OF GLOBAL AND LOCAL INFORMATION
-	//TODO: FILL
-	
-
-
-
 	//SET GLOBALS: PLATFORMS, CAMERA, PLAYERS, LEVELS
 	//		SET GLOBAL ABSOLUTES - TRANSFORM, SPRITERENDER, MONOSCRIPT
 	//		SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
@@ -48,10 +42,46 @@ function Awake(){
 	var topPlatformFloor = platforms[1].renderer.bounds.extents.y;
 	
 	//Array(Map{Type:Array(Map{})})
+	//Array of Levels
+	//	Each Level represented as a Map{Object type : Array of those objects in level}
+	//		Objects are represented as a Map {"Information to Set" : Value}
+	//			Examples are {Position: Vector3 Position; Sprite: String SpriteLocation; Variables: Array of Variables for Method setVariables(Array)}
 	//TODO: CHANGE HARD CODED VALUES
 	//TODO: "SCALE" = Vector3()
 	
+	//LEVEL 3
+				var level3_Button1Mapping = {};
+				level3_Button1Mapping["Position"] = new Vector3(5f, bottomPlatformFloor, 0f);
+				level3_Button1Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level3_Button1Mapping["Variables"] = ["Next_Level2/Gate 1",3,-4,0];
 				
+				var level3_Button2Mapping = {};
+				level3_Button2Mapping["Position"] = new Vector3(15f,topPlatformFloor, 0f);
+				level3_Button2Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Button2Mapping["Script"]   = "InteractibleScript";
+				level3_Button2Mapping["Variables"] = ["Next_Level2/Gate 2",3,4,0];
+		
+			var level3_ButtonArray = [level3_Button1Mapping, level3_Button2Mapping];
+	
+				var level3_Gate2Mapping = {};
+				level3_Gate2Mapping["Position"] = new Vector3(16f,bottomPlatformFloor,0);
+				level3_Gate2Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Gate2Mapping["Script"]   = "PlatformScript";
+				level3_Gate2Mapping["Variables"] = [];
+				
+				var level3_Gate1Mapping = {};
+				level3_Gate1Mapping["Position"] = new Vector3(9f,topPlatformFloor,0);
+				level3_Gate1Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Gate1Mapping["Script"]   = "PlatformScript";
+				level3_Gate1Mapping["Variables"] = [];
+				
+			var level3_GateArray = [level3_Gate1Mapping, level3_Gate2Mapping];
+		var level3_childrenMapping = {};
+		level3_childrenMapping["Button"] = level3_ButtonArray;
+		level3_childrenMapping["Gate"] = level3_GateArray;
+	
+	//LEVEL 2	
 				var level2_Button1Mapping = {};
 				level2_Button1Mapping["Position"] = new Vector3(6f,topPlatformFloor, 0f);
 				level2_Button1Mapping["Sprite"]   = "Materials/GreenButton";
@@ -69,6 +99,8 @@ function Awake(){
 		var level2_childrenMapping = {};
 		level2_childrenMapping["Button"] = level2_ButtonArray;
 		level2_childrenMapping["Gate"] = level2_GateArray;
+	
+	//LEVEL 1
 	
 				var level1_Button1Mapping = {};
 				level1_Button1Mapping["Position"] = new Vector3(5f, topPlatformFloor, 0f);
@@ -100,7 +132,10 @@ function Awake(){
 		var level1_childrenMapping = {};
 		level1_childrenMapping["Button"] = level1_ButtonArray;
 		level1_childrenMapping["Gate"] = level1_GateArray;
-	var levelArrangement = [level1_childrenMapping, level2_childrenMapping];
+		
+		
+	//LIST OF LEVELS
+	var levelArrangement = [level1_childrenMapping, level2_childrenMapping,level3_childrenMapping];
 			
 	// 		FOR EACH LEVEL { FOR EACH CHILD { 
 	//			SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
@@ -135,14 +170,15 @@ function Awake(){
 			componentTypeMap = childTypeArray[childTypeIndex];
 
 			//POSITION
-			//TODO: CHANGE TO level_i.transform.position + componentTypeMap[Position]
+			//Input is relative to level position (positionFromStart, middle of center platform)
+			//	Should also be where you want the center bottom of the sprite to be
 			positionTypeCast = componentTypeMap["Position"];
 			child.transform.position = level_i.transform.position + positionTypeCast;
 			child.transform.position.y += child.renderer.bounds.extents.y;
 			
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
-			//SCRIPT - TODO:NOT WORKING
+			//SCRIPT
 			scriptTypeCast = componentTypeMap["Script"];
 			if("Script" in componentTypeMap){
 				if(child.gameObject.GetComponent(scriptTypeCast)==null){ 
@@ -155,13 +191,6 @@ function Awake(){
 		
 		}
 	}
-	
-								
-
-
-
-
-	//TODO: CHECK IF COMPONENTS ALREADY EXIST
 
 }
 
@@ -219,7 +248,7 @@ function instantiatePlayers(){
 			variablesToSet.push(KeyCode.UpArrow);
 		}
 		variablesToSet.push(10);
-		variablesToSet.push(1000);
+		variablesToSet.push(20);
 		player_i.SendMessage("setVariables", variablesToSet);
 		
 	}
@@ -267,7 +296,10 @@ function nextLevel(l:String){
 
 
 
-function Update () {//TODO: ADJUST CAMERA
+function Update () {
+
+	//TODO: ADJUST CAMERA - Pan slowly to next level; center on players but stay within bounds of level.
+	//TODO: LIMIT PLAYER POSITION - Players cannot go to the left of the level boundary
 
 	//Set camera to the current lvl
 	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
