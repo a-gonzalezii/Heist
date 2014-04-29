@@ -43,6 +43,9 @@ function Awake(){
 	var bottomPlatformFloor = -levels[0].renderer.bounds.extents.y;
 	var topPlatformFloor = platforms[1].renderer.bounds.extents.y;
 	
+	//BACKGROUND
+	instantiateBackground();
+	
 	//Array(Map{Type:Array(Map{})})
 	//Array of Levels
 	//	Each Level represented as a Map{Object type : Array of those objects in level}
@@ -211,8 +214,8 @@ function instantiatePlatforms(){
 		platformExtents = platform_i.renderer.bounds.extents;
 		
 		//resizing collider
-		reSizingCollisionBox = new Vector3(platformExtents.x/platform_i.transform.localScale.x, platformExtents.y/platform_i.transform.localScale.y,platformExtents.z/platform_i.transform.localScale.z);
-		platform_i.GetComponent(BoxCollider2D).size = (reSizingCollisionBox*2);	
+		reSizingCollisionBox = 2*new Vector3(platformExtents.x/platform_i.transform.localScale.x, platformExtents.y/platform_i.transform.localScale.y,platformExtents.z/platform_i.transform.localScale.z);
+		platform_i.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);	
 		
 		
 		
@@ -242,7 +245,9 @@ function instantiatePlayers(){
 			player_i.AddComponent("PlayerController");
 		}
 		
-		//POSITION
+		//POSITION - SCALE
+		player_i.GetComponent(BoxCollider2D).size = player_i.renderer.bounds.size;
+		
 		var posX = platforms[i+1].transform.position.x - platforms[i+1].renderer.bounds.extents.x + 2;
 		var posY = platforms[i+1].transform.position.y+1;
 		player_i.transform.position = new Vector3(posX, posY, 0f);
@@ -291,6 +296,15 @@ function instantiateLevels(){
 		positionFromStart += levelSize[i];
 	}
 }
+
+function instantiateBackground(){
+
+
+	
+
+
+}
+
 
 function Start () {
 
