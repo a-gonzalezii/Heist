@@ -28,7 +28,6 @@ function Awake(){
 	//								PLATFORM()
 	//								LEVEL()
 	
-	
 	//CAMERA
 	mainCamera = Camera.main;
 	//PLATFORMS
@@ -165,7 +164,7 @@ function Awake(){
 			childType = name[0];
 			childTypeIndex = parseInt(name[1])-1;		
 			
-			levelMap = levelArrangement[i];// gives up map{type:list}
+			levelMap = levelArrangement[i];// gives map{type:list}
 			childTypeArray = levelMap[childType];
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
@@ -188,7 +187,6 @@ function Awake(){
 			}
 			arrayCast = componentTypeMap["Variables"];
 			child.SendMessage("setVariables",arrayCast);
-			//}
 		
 		}
 	}

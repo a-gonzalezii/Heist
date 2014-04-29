@@ -1,7 +1,7 @@
-﻿#pragma strict
+#pragma strict
 
 //set in the scene
-var changedObject:GameObject;//a platform or wall - //TODO:may be able to use just the transform
+var changedObject:GameObject;//a platform or wall
 var moving: boolean = false;
 var speed: float = 3;
 var yDist: float = 0;
@@ -33,16 +33,6 @@ function OnTriggerEnter2D(hitInfo : Collider2D){
 	}	
 }
 
-/* Phased out - now everything moves on fixedupdate
-//as long as youre on the button move the wall
-function OnTriggerStay2D(hitInfo: Collider2D){
-	if(hitInfo.collider2D.tag =="Player"){
-		var positionPrime:Vector3 = Vector3.MoveTowards(changedObject.transform.position, targetPosition, step);
-		changedObject.transform.Translate(positionPrime - changedObject.transform.position);
-//		changedObject.transform.position = Vector3.MoveTowards(changedObject.transform.position, targetPosition, step);
-	}
-}*/
-
 //when off button no longer moving wall/moves back to position
 function OnTriggerExit2D(hitInfo : Collider2D){
 	if(hitInfo.collider2D.tag == "Player"){
@@ -68,7 +58,6 @@ function FixedUpdate(){
 
 //INPUT: [CHANGEDOBJECT:STRING, SPEED:FLOAT, YDIST:FLOAT, XDIST:FLOAT]
 function setVariables(variables:Array){
-
 	changedObject = GameObject.Find(variables[0]);
 	speed = variables[1];
 	yDist = variables[2];
