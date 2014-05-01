@@ -133,15 +133,17 @@ function Awake(){
 			childTypeArray = levelMap[childType];
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
-
+			
+			//SPRITE
+			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			
 			//POSITION
 			//TODO: CHANGE TO level_i.transform.position + componentTypeMap[Position]
 			positionTypeCast = componentTypeMap["Position"];
 			child.transform.position = level_i.transform.position + positionTypeCast;
 			child.transform.position.y += child.renderer.bounds.extents.y;
 			
-			//SPRITE
-			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			
 			//SCRIPT - TODO:NOT WORKING
 			scriptTypeCast = componentTypeMap["Script"];
 			if("Script" in componentTypeMap){
@@ -176,6 +178,8 @@ function instantiatePlatforms(){
 		var platform_i = platforms[i];
 		//SET SPRITE
 		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
+		platformExtents = platform_i.renderer.bounds.extents;
+		
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
@@ -185,7 +189,8 @@ function instantiatePlatforms(){
 		//POSITION
 		//Set platforms so that their start position(far left side) is at 0f and they are evenly spaced through the center of the screen. 
 			//set the 3 heights to top, middle, bottom (1f-i/2f) - then shift up the top 0, the middle 1/25, bottom 2/25 of screen height
-		platform_i.transform.position = new Vector3(platformExtents.x, screenHeight*(1f+((i%3)/25f)-(i/2f)),0f);
+		platform_i.transform.position = new Vector3(platform_i.renderer.bounds.extents.x, screenHeight*(1f+((i%3)/25f)-(i/2f)),0f);
+		print(platformExtents.x);
 	}
 }
 
