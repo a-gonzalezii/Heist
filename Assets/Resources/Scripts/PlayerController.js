@@ -31,7 +31,7 @@ function FixedUpdate () {
 	}//Jump - seperate loop so you can jump and move
 	if(Input.GetKey(jump)){
 		if(!jumpIsLocked){//TODO: NEED TO CHANGE THIS FOR WHEN THEY ARE IN A SPACE THAT ONLY FITS THE USER/player icon
-			rigidbody2D.AddForce(Vector3.up*jumpForce);//rigidbody2D.velocity.y = jumpSpeed;
+			rigidbody2D.velocity.y = jumpForce;
 			jumpIsLocked = true;
 		}
 	}

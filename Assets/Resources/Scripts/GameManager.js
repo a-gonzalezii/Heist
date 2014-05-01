@@ -1,5 +1,5 @@
 ﻿#pragma strict
-import System.Linq;
+//import System.Linq;
 
 //var player1: Transform;
 //var player2: Transform;
@@ -22,18 +22,11 @@ function Awake(){
 	//TODO: UPDATE AS WE BUILD MORE LEVELS
 	//
 
-	//ARRAYS OF GLOBAL AND LOCAL INFORMATION
-	//TODO: FILL
-	
-
-
-
 	//SET GLOBALS: PLATFORMS, CAMERA, PLAYERS, LEVELS
 	//		SET GLOBAL ABSOLUTES - TRANSFORM, SPRITERENDER, MONOSCRIPT
 	//		SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
 	//								PLATFORM()
 	//								LEVEL()
-	
 	
 	//CAMERA
 	mainCamera = Camera.main;
@@ -44,14 +37,57 @@ function Awake(){
 	instantiatePlayers();
 	//LEVELS
 	instantiateLevels();
+	//Set Camera
+	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
+	mainCamera.transform.position = new Vector3(xPos, screenHeight/2 , 0) + cameraOffset;
 	var bottomPlatformFloor = -levels[0].renderer.bounds.extents.y;
 	var topPlatformFloor = platforms[1].renderer.bounds.extents.y;
 	
+	//BACKGROUND
+	instantiateBackground();
+	
 	//Array(Map{Type:Array(Map{})})
+	//Array of Levels
+	//	Each Level represented as a Map{Object type : Array of those objects in level}
+	//		Objects are represented as a Map {"Information to Set" : Value}
+	//			Examples are {Position: Vector3 Position; Sprite: String SpriteLocation; Variables: Array of Variables for Method setVariables(Array)}
 	//TODO: CHANGE HARD CODED VALUES
 	//TODO: "SCALE" = Vector3()
+	//TODO: PHYSICS MATERIAL
 	
+	//LEVEL 3
+				var level3_Button1Mapping = {};
+				level3_Button1Mapping["Position"] = new Vector3(5f, bottomPlatformFloor, 0f);
+				level3_Button1Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level3_Button1Mapping["Variables"] = ["Next_Level2/Gate 1",3,-4,0];
 				
+				var level3_Button2Mapping = {};
+				level3_Button2Mapping["Position"] = new Vector3(15f,topPlatformFloor, 0f);
+				level3_Button2Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Button2Mapping["Script"]   = "InteractibleScript";
+				level3_Button2Mapping["Variables"] = ["Next_Level2/Gate 2",3,4,0];
+		
+			var level3_ButtonArray = [level3_Button1Mapping, level3_Button2Mapping];
+	
+				var level3_Gate2Mapping = {};
+				level3_Gate2Mapping["Position"] = new Vector3(16f,bottomPlatformFloor,0);
+				level3_Gate2Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Gate2Mapping["Script"]   = "PlatformScript";
+				level3_Gate2Mapping["Variables"] = [];
+				
+				var level3_Gate1Mapping = {};
+				level3_Gate1Mapping["Position"] = new Vector3(9f,topPlatformFloor,0);
+				level3_Gate1Mapping["Sprite"]   = "Materials/GreenButton";
+				level3_Gate1Mapping["Script"]   = "PlatformScript";
+				level3_Gate1Mapping["Variables"] = [];
+				
+			var level3_GateArray = [level3_Gate1Mapping, level3_Gate2Mapping];
+		var level3_childrenMapping = {};
+		level3_childrenMapping["Button"] = level3_ButtonArray;
+		level3_childrenMapping["Gate"] = level3_GateArray;
+	
+	//LEVEL 2	
 				var level2_Button1Mapping = {};
 				level2_Button1Mapping["Position"] = new Vector3(6f,topPlatformFloor, 0f);
 				level2_Button1Mapping["Sprite"]   = "Materials/GreenButton";
@@ -69,6 +105,8 @@ function Awake(){
 		var level2_childrenMapping = {};
 		level2_childrenMapping["Button"] = level2_ButtonArray;
 		level2_childrenMapping["Gate"] = level2_GateArray;
+	
+	//LEVEL 1
 	
 				var level1_Button1Mapping = {};
 				level1_Button1Mapping["Position"] = new Vector3(5f, topPlatformFloor, 0f);
@@ -100,7 +138,10 @@ function Awake(){
 		var level1_childrenMapping = {};
 		level1_childrenMapping["Button"] = level1_ButtonArray;
 		level1_childrenMapping["Gate"] = level1_GateArray;
-	var levelArrangement = [level1_childrenMapping, level2_childrenMapping];
+		
+		
+	//LIST OF LEVELS
+	var levelArrangement = [level1_childrenMapping, level2_childrenMapping,level3_childrenMapping];
 			
 	// 		FOR EACH LEVEL { FOR EACH CHILD { 
 	//			SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
@@ -129,22 +170,31 @@ function Awake(){
 			childType = name[0];
 			childTypeIndex = parseInt(name[1])-1;		
 			
-			levelMap = levelArrangement[i];// gives up map{type:list}
+			levelMap = levelArrangement[i];// gives map{type:list}
 			childTypeArray = levelMap[childType];
 			
 			componentTypeMap = childTypeArray[childTypeIndex];
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> FETCH_HEAD
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
 			
 			//POSITION
-			//TODO: CHANGE TO level_i.transform.position + componentTypeMap[Position]
+			//Input is relative to level position (positionFromStart, middle of center platform)
+			//	Should also be where you want the center bottom of the sprite to be
 			positionTypeCast = componentTypeMap["Position"];
 			child.transform.position = level_i.transform.position + positionTypeCast;
 			child.transform.position.y += child.renderer.bounds.extents.y;
+<<<<<<< HEAD
 			
 			
 			//SCRIPT - TODO:NOT WORKING
+=======
+
+>>>>>>> FETCH_HEAD
 			scriptTypeCast = componentTypeMap["Script"];
 			if("Script" in componentTypeMap){
 				if(child.gameObject.GetComponent(scriptTypeCast)==null){ 
@@ -153,17 +203,9 @@ function Awake(){
 			}
 			arrayCast = componentTypeMap["Variables"];
 			child.SendMessage("setVariables",arrayCast);
-			//}
 		
 		}
 	}
-	
-								
-
-
-
-
-	//TODO: CHECK IF COMPONENTS ALREADY EXIST
 
 }
 
@@ -172,14 +214,28 @@ function instantiatePlatforms(){
 	//PLATFORMS
 	platforms = GameObject.FindGameObjectsWithTag("Platform");//get all platforms
 	platforms.Sort(platforms, function(g1,g2) String.Compare(g1.name, g2.name));//sort alphabetically
-	platformExtents = platforms[0].renderer.bounds.extents;
+	
+	var reSizingCollisionBox:Vector3;
 		
 	for(var i=0;i<platforms.Length;i++){
 		var platform_i = platforms[i];
+<<<<<<< HEAD
 		//SET SPRITE
 		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PurplePlatform",Sprite);
 		platformExtents = platform_i.renderer.bounds.extents;
 		
+=======
+		//SET SPRITE TODO -- platform2 demension = 7000 × 70 px 
+		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform1",Sprite);
+		platformExtents = platform_i.renderer.bounds.extents;
+		
+		//resizing collider
+		reSizingCollisionBox = 2*new Vector3(platformExtents.x/platform_i.transform.localScale.x, platformExtents.y/platform_i.transform.localScale.y,platformExtents.z/platform_i.transform.localScale.z);
+		platform_i.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);	
+		
+		
+		
+>>>>>>> FETCH_HEAD
 		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
 		
 		//SET SCRIPT
@@ -201,14 +257,16 @@ function instantiatePlayers(){
 	for(var i=0; i<players.Length; i++){
 		var player_i = players[i];
 		//SPRITE
-		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/"+player_i.name,Sprite);
+		player_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/p1_idle",Sprite);
 		//MATERIAL / SCRIPT
 		if(player_i.GetComponent("PlayerController") == null){
 			player_i.AddComponent("PlayerController");
 		}
 		
-		//POSITION
-		var posX = platforms[i+1].transform.position.x - platformExtents.x + 2;
+		//POSITION - SCALE
+		player_i.GetComponent(BoxCollider2D).size = player_i.renderer.bounds.size;
+		
+		var posX = platforms[i+1].transform.position.x - platforms[i+1].renderer.bounds.extents.x + 2;
 		var posY = platforms[i+1].transform.position.y+1;
 		player_i.transform.position = new Vector3(posX, posY, 0f);
 		
@@ -224,7 +282,7 @@ function instantiatePlayers(){
 			variablesToSet.push(KeyCode.UpArrow);
 		}
 		variablesToSet.push(10);
-		variablesToSet.push(1000);
+		variablesToSet.push(20);
 		player_i.SendMessage("setVariables", variablesToSet);
 		
 	}
@@ -257,6 +315,15 @@ function instantiateLevels(){
 	}
 }
 
+function instantiateBackground(){
+
+
+	
+
+
+}
+
+
 function Start () {
 
 	//Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, true);
@@ -272,11 +339,14 @@ function nextLevel(l:String){
 
 
 
-function Update () {//TODO: ADJUST CAMERA
+function Update () {
+
+	//TODO: ADJUST CAMERA - Pan slowly to next level; center on players but stay within bounds of level.
+	//TODO: LIMIT PLAYER POSITION - Players cannot go to the left of the level boundary
 
 	//Set camera to the current lvl
 	var xPos = Mathf.Abs(levels[1].transform.position.x - levels[0].transform.position.x)/2 + levels[0].transform.position.x;
-	mainCamera.transform.position = new Vector3(xPos, 5 , 0) + cameraOffset;
+	mainCamera.transform.position.x = xPos;
 
 }
 
