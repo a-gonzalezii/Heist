@@ -37,6 +37,7 @@ function OnTriggerEnter2D(hitInfo : Collider2D){
 		moving = true;
 		unpressedSprite = GetComponent(SpriteRenderer).sprite;
 		GetComponent(SpriteRenderer).sprite = pressedSprite;
+		hitInfo.gameObject.transform.position.y += renderer.bounds.extents.y/2;
 	}	
 }
 
@@ -45,6 +46,7 @@ function OnTriggerExit2D(hitInfo : Collider2D){
 	if(hitInfo.collider2D.tag == "Player"){
 		moving = false;
 		GetComponent(SpriteRenderer).sprite = unpressedSprite;
+		hitInfo.gameObject.transform.position.y -= renderer.bounds.extents.y/2;
 	}
 }
 

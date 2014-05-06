@@ -81,6 +81,50 @@ function Awake(){
 	//TODO: "SCALE" = Vector3()
 	//TODO: PHYSICS MATERIAL
 	
+	//LEVEL4
+	
+				var level4_Button2Mapping = {};
+				level4_Button2Mapping["Position"] = new Vector3(12f,topPlatformFloor, 0f);
+				level4_Button2Mapping["Sprite"]   = "Materials/buttonGreen";
+				level4_Button2Mapping["Script"]   = "InteractibleScript";
+				level4_Button2Mapping["Variables"] = ["Next_Level4/Gate 3",3,4,0];
+				level4_Button2Mapping["Scale"] = new Vector3(1,1,1);			
+	
+				var level4_Button1Mapping = {};
+				level4_Button1Mapping["Position"] = new Vector3(5f, bottomPlatformFloor, 0f);
+				level4_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
+				level4_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level4_Button1Mapping["Variables"] = ["Next_Level4/Gate 1",3, 10,0];
+				level4_Button1Mapping["Scale"] = new Vector3(1,1,1);
+					
+			var level4_ButtonArray = [level4_Button1Mapping, level4_Button2Mapping];
+			
+				var level4_Gate3Mapping = {};
+				level4_Gate3Mapping["Position"] = new Vector3(20f,bottomPlatformFloor,0);
+				level4_Gate3Mapping["Sprite"]   = "Materials/gate";
+				level4_Gate3Mapping["Script"]   = "PlatformScript";
+				level4_Gate3Mapping["Variables"] = [];
+				level4_Gate3Mapping["Scale"] = new Vector3(1,.5,1);
+			
+				var level4_Gate2Mapping = {};
+				level4_Gate2Mapping["Position"] = new Vector3(16f,topPlatformFloor,0);
+				level4_Gate2Mapping["Sprite"]   = "Materials/gate";
+				level4_Gate2Mapping["Script"]   = "PlatformScript";
+				level4_Gate2Mapping["Variables"] = [];
+				level4_Gate2Mapping["Scale"] = new Vector3(2,1,1);
+			
+				var level4_Gate1Mapping = {};
+				level4_Gate1Mapping["Position"] = new Vector3(9f,bottomPlatformFloor,0);
+				level4_Gate1Mapping["Sprite"]   = "Materials/gate";
+				level4_Gate1Mapping["Script"]   = "PlatformScript";
+				level4_Gate1Mapping["Variables"] = [];
+				level4_Gate1Mapping["Scale"] = new Vector3(1,1,1);
+			
+			var level4_GateArray   = [level4_Gate1Mapping, level4_Gate2Mapping, level4_Gate3Mapping];
+			
+		var level4_childrenMapping = {};
+		level4_childrenMapping["Button"] = level4_ButtonArray;
+		level4_childrenMapping["Gate"] = level4_GateArray;
 	//LEVEL 3
 				var level3_Button1Mapping = {};
 				level3_Button1Mapping["Position"] = new Vector3(5f, bottomPlatformFloor, 0f);
@@ -178,7 +222,8 @@ function Awake(){
 		var level0_childrenMapping = {};
 		
 	//LIST OF LEVELS
-	var levelArrangement = [level0_childrenMapping, level2_childrenMapping,level1_childrenMapping,level3_childrenMapping];
+	var levelArrangement = [level0_childrenMapping, level2_childrenMapping, level1_childrenMapping, 
+						level3_childrenMapping, level4_childrenMapping];
 			
 	// 		FOR EACH LEVEL { FOR EACH CHILD { 
 	//			SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
@@ -267,7 +312,9 @@ function instantiatePlatforms(){
 		var platform_i = platforms[i];
 		
 		//SET SPRITE 
-		platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform"+i,Sprite);
+		if(i<2){
+			platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform1",Sprite);
+		}else{platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform2",Sprite);}
 		platformExtents = platform_i.renderer.bounds.extents;
 		
 		//resizing collider
@@ -331,7 +378,7 @@ function instantiatePlayers(){
 function instantiateLevels(){
 
 	//space between this and the next level - MUST KEEP EXTRA 0 AT THE END
-	var levelSize=[15,23,28,23,41,46,0];
+	var levelSize=[15,23,28,23,28,46,0];
 
 	//LEVELS	
 	levels = GameObject.FindGameObjectsWithTag("Level");
@@ -347,7 +394,7 @@ function instantiateLevels(){
 		}
 		
 		//POSITION
-		level_i.transform.localScale = new Vector3(1f,2*(platforms[0].transform.position.y-platforms[2].transform.position.y-platforms[0].renderer.bounds.size.y),1f);
+		level_i.transform.localScale = new Vector3(1f,2*(platforms[0].transform.position.y-platforms[2].transform.position.y-(platforms[0].renderer.bounds.extents.y+platforms[2].renderer.bounds.extents.y)),1f);
 		level_i.transform.position = new Vector3(positionFromStart, platforms[1].transform.position.y, 0f);
 		positionFromStart += levelSize[i];
 	}
