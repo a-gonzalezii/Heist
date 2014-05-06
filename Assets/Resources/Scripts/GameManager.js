@@ -471,6 +471,7 @@ function OnGUI(){
 		GUI.contentColor = Color.black;
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2,150,50),"Late for work again...");
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2-50,150,50),"TIMES UP!");
+		GUI.DrawTexture(Rect(Screen.width-200,Screen.height-50,200,50),Resources.Load("Materials/logo",Texture),ScaleMode.ScaleToFit);
 		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+100, 100,50),"Retry")){
 			levels = GameObject.FindGameObjectsWithTag("Level");
 			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
