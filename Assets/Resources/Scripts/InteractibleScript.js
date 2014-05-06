@@ -18,6 +18,16 @@ var targetPosition: Vector3;
 var step: float;
 var startPosition: Vector3;
 
+var buttonClickAudio:AudioClip;
+var gateCloseAudio:AudioClip;
+
+var played = true;
+
+
+function Awake(){
+	buttonClickAudio = Resources.Load("Sounds/ButtonClick",AudioClip);
+	gateCloseAudio = Resources.Load("Sounds/gateClosing",AudioClip);
+}
 
 function Start(){
 
@@ -35,9 +45,11 @@ function Start(){
 function OnTriggerEnter2D(hitInfo : Collider2D){
 	if(hitInfo.collider2D.tag == "Player"){
 		moving = true;
+		played = false;
 		unpressedSprite = GetComponent(SpriteRenderer).sprite;
 		GetComponent(SpriteRenderer).sprite = pressedSprite;
 		hitInfo.gameObject.transform.position.y += renderer.bounds.extents.y/2;
+		audio.PlayOneShot(buttonClickAudio);
 	}	
 }
 
@@ -61,6 +73,11 @@ function FixedUpdate(){
 		if(Vector3.Distance(startPosition, changedObject.transform.position) > .05){
 			positionPrime = Vector3.MoveTowards(changedObject.transform.position, startPosition, step);
 			changedObject.transform.Translate(positionPrime - changedObject.transform.position);
+		}else{
+			if(!played){
+				audio.PlayOneShot(gateCloseAudio);
+				played = true;
+			}
 		}
 	}
 

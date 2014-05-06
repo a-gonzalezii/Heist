@@ -415,6 +415,8 @@ MonoBehaviour:
   mainThemeAudio: {fileID: 0}
   endWarningAudio: {fileID: 0}
   gameOverAudio: {fileID: 0}
+  checkPointAudio: {fileID: 0}
+  spawnAudio: {fileID: 0}
   platformExtents: {x: 0, y: 0, z: 0}
   screenHeight: 0
 --- !u!82 &162819261
@@ -826,6 +828,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &387749251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1120,6 +1123,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &502607396
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1205,6 +1209,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &545398747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1353,6 +1358,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &556550860
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1438,6 +1444,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &581989865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1962,6 +1969,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &930327789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2047,6 +2055,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &969047518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2121,6 +2130,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &974145374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2895,6 +2905,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &1329514941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3525,6 +3536,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &1782106908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3968,6 +3980,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
+  buttonClickAudio: {fileID: 0}
 --- !u!212 &2041131176
 SpriteRenderer:
   m_ObjectHideFlags: 0

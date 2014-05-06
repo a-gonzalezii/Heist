@@ -12,14 +12,9 @@ var jump : KeyCode;
 var jumpAudio:AudioClip;
 
 function Awake(){
-	
+	jumpAudio = Resources.Load("Sounds/jumpLowPitch",AudioClip);
 
 }
-
-function Start(){
-
-}
-
 
 function jumpToUnlock(){
 	jumpIsLocked = false;
@@ -40,6 +35,7 @@ function FixedUpdate () {
 		if(!jumpIsLocked){//TODO: NEED TO CHANGE THIS FOR WHEN THEY ARE IN A SPACE THAT ONLY FITS THE USER/player icon
 			rigidbody2D.velocity.y = jumpForce;
 			jumpIsLocked = true;
+			audio.PlayOneShot(jumpAudio);
 		}
 	}
 }

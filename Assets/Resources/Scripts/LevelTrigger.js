@@ -6,8 +6,6 @@
 			-move to next index 
 			-pop level from Stack
 			
-
-
 */
 
 function OnTriggerExit2D(hitInfo : Collider2D){

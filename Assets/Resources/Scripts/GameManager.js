@@ -29,6 +29,8 @@ var gameOver = false;
 var mainThemeAudio:AudioClip;
 var endWarningAudio:AudioClip;
 var gameOverAudio:AudioClip;
+var checkPointAudio:AudioClip;
+var spawnAudio:AudioClip;
 
 
 //GENERAL VARIABLES THAT POP UP OFTEN
@@ -69,10 +71,13 @@ function Awake(){
 
 
 	//AUDIO
+	spawnAudio = Resources.Load("Sounds/SpawnAudio",AudioClip);
+	checkPointAudio = Resources.Load("Sounds/Hit_checkpoint",AudioClip);
 	gameOverAudio = Resources.Load("Sounds/Game_over",AudioClip);
 	mainThemeAudio = Resources.Load("Sounds/Main_Theme",AudioClip);
 	endWarningAudio = Resources.Load("Sounds/Time_Low",AudioClip);
 	audio.clip = mainThemeAudio;
+	audio.volume = .3;
 	audio.loop = true;
 	audio.Play();
 	
@@ -271,8 +276,7 @@ function Awake(){
 		
 		for(var child: Transform in level_i.transform){
 			name = child.name.Split();
-		
-		
+	
 			childType = name[0];
 			childTypeIndex = parseInt(name[1])-1;		
 			
@@ -316,6 +320,12 @@ function Awake(){
 			}
 			arrayCast = componentTypeMap["Variables"];
 			child.SendMessage("setVariables",arrayCast);
+		
+			if(childType=="Button"){
+				if(child.gameObject.GetComponent(AudioSource)==null){
+					child.gameObject.AddComponent(AudioSource);
+				}
+			}
 		
 		}
 	}
@@ -399,6 +409,11 @@ function instantiatePlayers(){
 		variablesToSet.push(10);
 		variablesToSet.push(20);
 		player_i.SendMessage("setVariables", variablesToSet);
+		
+		if(player_i.gameObject.GetComponent(AudioSource)==null){
+			player_i.gameObject.AddComponent(AudioSource);
+		}
+		
 		
 	}
 }
@@ -489,7 +504,10 @@ function extendPlatformAndBg(){
 // Delete the first level - called from LevelTrigger.js
 function nextLevel(l:String){
 	if(levels[1].name==l && levels.Length>2){
+		if(levels[1].name != "Next_Level1"){audio.PlayOneShot(checkPointAudio);;}
+		else{audio.PlayOneShot(spawnAudio);}
 		levels = levels[1:];
+		
 	}
 	
 	playerLeftLimit = levels[0].transform.position.x;
