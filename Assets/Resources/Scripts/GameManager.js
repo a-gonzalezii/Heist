@@ -23,9 +23,12 @@ var playerLeftLimit = 0;
 
 var timeWarning = 20;
 var isPaused = false;
+var inWarning = false;
+var gameOver = false;
 
 var mainThemeAudio:AudioClip;
 var endWarningAudio:AudioClip;
+var gameOverAudio:AudioClip;
 
 
 //GENERAL VARIABLES THAT POP UP OFTEN
@@ -64,8 +67,9 @@ function Awake(){
 	var bottomPlatformFloor = -levels[0].renderer.bounds.extents.y;
 	var topPlatformFloor = platforms[1].renderer.bounds.extents.y;
 
+
 	//AUDIO
-	
+	gameOverAudio = Resources.Load("Sounds/Game_over",AudioClip);
 	mainThemeAudio = Resources.Load("Sounds/Main_Theme",AudioClip);
 	endWarningAudio = Resources.Load("Sounds/Time_Low",AudioClip);
 	audio.clip = mainThemeAudio;
@@ -84,7 +88,7 @@ function Awake(){
 	//LEVEL4
 	
 				var level4_Button2Mapping = {};
-				level4_Button2Mapping["Position"] = new Vector3(12f,topPlatformFloor, 0f);
+				level4_Button2Mapping["Position"] = new Vector3(16f,topPlatformFloor+6, 0f);//TODO: HARD CODED - FIX
 				level4_Button2Mapping["Sprite"]   = "Materials/buttonGreen";
 				level4_Button2Mapping["Script"]   = "InteractibleScript";
 				level4_Button2Mapping["Variables"] = ["Next_Level4/Gate 3",3,4,0];
@@ -219,8 +223,23 @@ function Awake(){
 		level1_childrenMapping["Button"] = level1_ButtonArray;
 		level1_childrenMapping["Gate"] = level1_GateArray;
 		
-		var level0_childrenMapping = {};
+			//EXTRA CODE IN CASE WE WANT TO CREATE REFERENCE OBJECTS LATER
+			var level0_Button1Mapping = {};
+				level0_Button1Mapping["Position"] = new Vector3(1f, topPlatformFloor, 0f);
+				level0_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
+				level0_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level0_Button1Mapping["Variables"] = ["Next_Level0/Gate 1",3,4,0];
+				level0_Button1Mapping["Scale"] = new Vector3(1,1,1);
+			var level0_ButtonArray = [level0_Button1Mapping];
+				var level0_Gate1Mapping = {};
+				level0_Gate1Mapping["Position"] = new Vector3(1f,bottomPlatformFloor,0);
+				level0_Gate1Mapping["Sprite"]   = "Materials/gate";
+				level0_Gate1Mapping["Script"]   = "PlatformScript";
+				level0_Gate1Mapping["Variables"] = [];
+				level0_Gate1Mapping["Scale"] = new Vector3(1,1,1);
 		
+		var level0_childrenMapping = {};
+				
 	//LIST OF LEVELS
 	var levelArrangement = [level0_childrenMapping, level2_childrenMapping, level1_childrenMapping, 
 						level3_childrenMapping, level4_childrenMapping];
@@ -246,11 +265,13 @@ function Awake(){
 		var arrayCast:Array;
 		var scriptTypeCast:String;
 		var positionTypeCast:Vector3;
+		var scaleTypeCast:Vector3;
 		
 		var reSizingCollisionBox:Vector3;
 		
 		for(var child: Transform in level_i.transform){
 			name = child.name.Split();
+		
 		
 			childType = name[0];
 			childTypeIndex = parseInt(name[1])-1;		
@@ -265,11 +286,18 @@ function Awake(){
 			
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			
 			//rescale to world then scale to parent
-			child.transform.localScale = componentTypeMap["Scale"];
-			reSizingCollisionBox = child.renderer.bounds.size;
-			child.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);
+			scaleTypeCast = componentTypeMap["Scale"];
+	
+			child.transform.localScale = scaleTypeCast;
 			child.transform.parent = level_i.transform;
+			
+			reSizingCollisionBox = child.renderer.bounds.size;
+			reSizingCollisionBox.x /= scaleTypeCast.x;
+			reSizingCollisionBox.y /= scaleTypeCast.y;
+			child.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);
+			
 			
 			//POSITION
 			//Input is relative to level position (positionFromStart, middle of center platform)
@@ -498,10 +526,14 @@ function FixedUpdate () {
 	
 	time -=Time.deltaTime;
 
-	if(time<timeWarning){
+	if(time<timeWarning && !inWarning){
 		audio.Pause();
 		audio.clip = endWarningAudio;
 		audio.Play();
+		inWarning = true;
+	}
+	if(time<=0){
+		gameOver = true;
 	}
 
 }
@@ -539,7 +571,23 @@ function OnGUI(){
 		//TIMER
 		GUI.contentColor = Color.black;
 		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
-	}else{//TODO: GAME OVER SCREEN NOT PAUSE SCREEN
+	}else{//TODO: PAUSE SCREEN
+	
+			isPaused = false;
+			Time.timeScale = 1.0;
+	
+	}
+	if(gameOver){//GAME OVER SCREEN
+	
+		var once = true;
+		Time.timeScale = 0.0;
+		if(once){
+			audio.Pause();
+			audio.clip = gameOverAudio;
+			audio.Play();
+			once = false;
+		}
+	
 		GUI.contentColor = Color.black;
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2,150,50),"Late for work again...");
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2-50,150,50),"TIMES UP!");

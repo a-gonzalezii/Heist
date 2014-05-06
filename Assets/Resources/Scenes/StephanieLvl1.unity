@@ -410,8 +410,11 @@ MonoBehaviour:
   playerLeftLimit: 0
   timeWarning: 20
   isPaused: 0
+  inWarning: 0
+  gameOver: 0
   mainThemeAudio: {fileID: 0}
   endWarningAudio: {fileID: 0}
+  gameOverAudio: {fileID: 0}
   platformExtents: {x: 0, y: 0, z: 0}
   screenHeight: 0
 --- !u!82 &162819261
@@ -1753,6 +1756,7 @@ GameObject:
   - 114: {fileID: 903556944}
   - 61: {fileID: 903556943}
   - 50: {fileID: 903556942}
+  - 82: {fileID: 903556947}
   m_Layer: 0
   m_Name: Player2_BlueBox
   m_TagString: Player
@@ -1803,6 +1807,7 @@ MonoBehaviour:
   moveLeft: 0
   moveRight: 0
   jump: 0
+  jumpAudio: {fileID: 0}
 --- !u!212 &903556945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1837,6 +1842,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &903556947
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 903556941}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &930327785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2549,6 +2612,7 @@ GameObject:
   - 61: {fileID: 1185351410}
   - 50: {fileID: 1185351409}
   - 95: {fileID: 1185351414}
+  - 82: {fileID: 1185351415}
   m_Layer: 0
   m_Name: Player1_RedBox
   m_TagString: Player
@@ -2599,6 +2663,7 @@ MonoBehaviour:
   moveLeft: 0
   moveRight: 0
   jump: 0
+  jumpAudio: {fileID: 0}
 --- !u!212 &1185351412
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2647,6 +2712,64 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!82 &1185351415
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1185351408}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1309997429
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,13 @@ var moveLeft : KeyCode;
 var moveRight : KeyCode;
 var jump : KeyCode;
 
+var jumpAudio:AudioClip;
+
+function Awake(){
+	
+
+}
+
 function Start(){
 
 }
