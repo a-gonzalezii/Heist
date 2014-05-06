@@ -87,14 +87,14 @@ function Awake(){
 				level3_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
 				level3_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
 				level3_Button1Mapping["Variables"] = ["Next_Level3/Gate 1",3,-5,0];
-				//level3_Button1Mapping["Scale"] = new Vector3(.88,.25,1);
+				level3_Button1Mapping["Scale"] = new Vector3(1,1,1);
 				
 				var level3_Button2Mapping = {};
 				level3_Button2Mapping["Position"] = new Vector3(12f,topPlatformFloor, 0f);
 				level3_Button2Mapping["Sprite"]   = "Materials/buttonGreen";
 				level3_Button2Mapping["Script"]   = "InteractibleScript";
 				level3_Button2Mapping["Variables"] = ["Next_Level3/Gate 2",3,4,0];
-				//level3_Button2Mapping["Scale"] = new Vector3(.88,.25,1);
+				level3_Button2Mapping["Scale"] = new Vector3(1,1,1);
 		
 			var level3_ButtonArray = [level3_Button1Mapping, level3_Button2Mapping];
 	
@@ -103,14 +103,14 @@ function Awake(){
 				level3_Gate2Mapping["Sprite"]   = "Materials/gate";
 				level3_Gate2Mapping["Script"]   = "PlatformScript";
 				level3_Gate2Mapping["Variables"] = [];
-				//level3_Gate2Mapping["Scale"] = new Vector3();
+				level3_Gate2Mapping["Scale"] = new Vector3(1,1,1);
 				
 				var level3_Gate1Mapping = {};
 				level3_Gate1Mapping["Position"] = new Vector3(9f,topPlatformFloor,0);
 				level3_Gate1Mapping["Sprite"]   = "Materials/gate";
 				level3_Gate1Mapping["Script"]   = "PlatformScript";
 				level3_Gate1Mapping["Variables"] = [];
-				//level3_Gate1Mapping["Scale"] = new Vector3();
+				level3_Gate1Mapping["Scale"] = new Vector3(1,1,1);
 				
 			var level3_GateArray = [level3_Gate1Mapping, level3_Gate2Mapping];
 		var level3_childrenMapping = {};
@@ -123,7 +123,7 @@ function Awake(){
 				level2_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
 				level2_Button1Mapping["Script"]   = "InteractibleScript";
 				level2_Button1Mapping["Variables"] = ["Next_Level1/Gate 1",3,4,0];
-				//level2_Button1Mapping["Scale"] = new Vector3();
+				level2_Button1Mapping["Scale"] = new Vector3(1,1,1);
 			var level2_ButtonArray = [level2_Button1Mapping];
 	
 				var level2_Gate1Mapping = {};
@@ -131,7 +131,7 @@ function Awake(){
 				level2_Gate1Mapping["Sprite"] = "Materials/gate";
 				level2_Gate1Mapping["Script"]   = "PlatformScript";
 				level2_Gate1Mapping["Variables"] = [];
-				//level2_Gate1Mapping["Scale"] = new Vector3();
+				level2_Gate1Mapping["Scale"] = new Vector3(1,1,1);
 				
 			var level2_GateArray = [level2_Gate1Mapping];
 		var level2_childrenMapping = {};
@@ -145,14 +145,14 @@ function Awake(){
 				level1_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
 				level1_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
 				level1_Button1Mapping["Variables"] = ["Next_Level2/Gate 1",3,4,0];
-				//level1_Button1Mapping["Scale"] = new Vector3(.88,.25,1);
+				level1_Button1Mapping["Scale"] = new Vector3(1,1,1);
 				
 				var level1_Button2Mapping = {};
 				level1_Button2Mapping["Position"] = new Vector3(12f,bottomPlatformFloor, 0f);
 				level1_Button2Mapping["Sprite"]   = "Materials/buttonGreen";
 				level1_Button2Mapping["Script"]   = "InteractibleScript";
 				level1_Button2Mapping["Variables"] = ["Next_Level2/Gate 2",3,4,0];
-				//level1_Button2Mapping["Scale"] = new Vector3();
+				level1_Button2Mapping["Scale"] = new Vector3(1,1,1);
 		
 			var level1_ButtonArray = [level1_Button1Mapping, level1_Button2Mapping];
 	
@@ -161,14 +161,14 @@ function Awake(){
 				level1_Gate2Mapping["Sprite"]   = "Materials/gate";
 				level1_Gate2Mapping["Script"]   = "PlatformScript";
 				level1_Gate2Mapping["Variables"] = [];
-				//level1_Gate2Mapping["Scale"] = new Vector3();
+				level1_Gate2Mapping["Scale"] = new Vector3(1,1,1);
 				
 				var level1_Gate1Mapping = {};
 				level1_Gate1Mapping["Position"] = new Vector3(8.8,bottomPlatformFloor,0);
 				level1_Gate1Mapping["Sprite"]   = "Materials/gate";
 				level1_Gate1Mapping["Script"]   = "PlatformScript";
 				level1_Gate1Mapping["Variables"] = [];
-				//level1_Gate1Mapping["Scale"] = new Vector3();
+				level1_Gate1Mapping["Scale"] = new Vector3(1,1,1);
 				
 			var level1_GateArray = [level1_Gate1Mapping, level1_Gate2Mapping];
 		var level1_childrenMapping = {};
@@ -221,7 +221,7 @@ function Awake(){
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
 			//rescale to world then scale to parent
-			child.transform.localScale = new Vector3(1,1,1);
+			child.transform.localScale = componentTypeMap["Scale"];
 			reSizingCollisionBox = child.renderer.bounds.size;
 			child.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);
 			child.transform.parent = level_i.transform;
@@ -482,15 +482,17 @@ function OnGUI(){
 			//RESET PLAYERS POSITIONS
 			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
 			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
-
+			
+			
+			//RESET CAMERA POSITION
 			nextLevel(levels[1].name);
-		
+			mainCamera.transform.position.x = cameraLeftLimit;
 		}
 	
 		//TIMER
 		GUI.contentColor = Color.black;
 		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
-	}else{
+	}else{//TODO: GAME OVER SCREEN NOT PAUSE SCREEN
 		GUI.contentColor = Color.black;
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2,150,50),"Late for work again...");
 		GUI.Label(Rect(Screen.width/2-75,Screen.height/2-50,150,50),"TIMES UP!");
@@ -505,6 +507,7 @@ function OnGUI(){
 			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
 
 			nextLevel(levels[1].name);
+			mainCamera.transform.position.x = cameraLeftLimit;
 			
 			isPaused = false;
 			Time.timeScale = 1.0;

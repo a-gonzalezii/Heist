@@ -7,6 +7,9 @@ var speed: float = 3;
 var yDist: float = 0;
 var xDist: float = 0;
 
+var pressedSprite:Sprite;
+var unpressedSprite:Sprite;
+
 
 var mainCamera:Camera;
 
@@ -20,6 +23,8 @@ function Start(){
 
 	mainCamera=Camera.main;
 
+	pressedSprite = Resources.Load("Materials/buttonGreen_pressed",Sprite);
+
 	startPosition = changedObject.transform.position;
 	step = speed*Time.deltaTime;
 	
@@ -30,6 +35,8 @@ function Start(){
 function OnTriggerEnter2D(hitInfo : Collider2D){
 	if(hitInfo.collider2D.tag == "Player"){
 		moving = true;
+		unpressedSprite = GetComponent(SpriteRenderer).sprite;
+		GetComponent(SpriteRenderer).sprite = pressedSprite;
 	}	
 }
 
@@ -37,6 +44,7 @@ function OnTriggerEnter2D(hitInfo : Collider2D){
 function OnTriggerExit2D(hitInfo : Collider2D){
 	if(hitInfo.collider2D.tag == "Player"){
 		moving = false;
+		GetComponent(SpriteRenderer).sprite = unpressedSprite;
 	}
 }
 
