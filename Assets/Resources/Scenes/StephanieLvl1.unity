@@ -418,7 +418,9 @@ MonoBehaviour:
   cameraRightLimit: 0
   playerLeftLimit: 0
   timeWarning: 20
+  isPaused: 0
   mainThemeAudio: {fileID: 0}
+  endWarningAudio: {fileID: 0}
   platformExtents: {x: 0, y: 0, z: 0}
   screenHeight: 0
 --- !u!82 &162819261

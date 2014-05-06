@@ -15,15 +15,17 @@ var bgs:GameObject[];
 var positionFromStart = 0;
 var platformPosFromStart = 0;
 var bgPosFromStart = 0;
-var time: float = 30;
+var time: float = 100;
 var cameraWidth:float;
 var cameraLeftLimit:float;
 var cameraRightLimit:float;
 var playerLeftLimit = 0;
 
 var timeWarning = 20;
+var isPaused = false;
 
 var mainThemeAudio:AudioClip;
+var endWarningAudio:AudioClip;
 
 
 //GENERAL VARIABLES THAT POP UP OFTEN
@@ -33,7 +35,7 @@ var screenHeight:float;
 
 
 function Awake(){
-
+	
 	//TODO: UPDATE AS WE BUILD MORE LEVELS
 	//
 
@@ -65,6 +67,7 @@ function Awake(){
 	//AUDIO
 	
 	mainThemeAudio = Resources.Load("Sounds/Main_Theme",AudioClip);
+	endWarningAudio = Resources.Load("Sounds/Time_Low",AudioClip);
 	audio.clip = mainThemeAudio;
 	audio.loop = true;
 	audio.Play();
@@ -426,32 +429,64 @@ function FixedUpdate () {
 	time -=Time.deltaTime;
 
 	if(time<timeWarning){
-		audio.clip = Resources.Load("Sounds/Running_out_of_time",AudioClip);
+		audio.Pause();
+		audio.clip = endWarningAudio;
 		audio.Play();
+	}
+
+}
+
+
+function Update(){
+
+	if(Input.GetKeyDown("escape")){
+		isPaused = !isPaused;
+		Time.timeScale = (Time.timeScale+1.0)%2;
 	}
 
 }
 
 function OnGUI(){
 
-	//RESET BUTTON
-	if(GUI.Button(new Rect(Screen.width-121, 35, 121, 53),"RESET")){
+	if(!isPaused){
+		//RESET BUTTON
+		if(GUI.Button(new Rect(Screen.width-121, 35, 121, 53),"RESET")){
 		
-		levels = GameObject.FindGameObjectsWithTag("Level");
-		levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-		time = 100;
+			levels = GameObject.FindGameObjectsWithTag("Level");
+			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
+			time = 100;
 		
-		//RESET PLAYERS POSITIONS
-		players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
-		players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+			//RESET PLAYERS POSITIONS
+			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
+			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
 
-		nextLevel(levels[1].name);
+			nextLevel(levels[1].name);
 		
-	}
+		}
 	
-	//TIMER
-	GUI.contentColor = Color.black;
-	GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
+		//TIMER
+		GUI.contentColor = Color.black;
+		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
+	}else{
+		GUI.contentColor = Color.black;
+		GUI.Label(Rect(Screen.width/2-75,Screen.height/2,150,50),"Late for work again...");
+		GUI.Label(Rect(Screen.width/2-75,Screen.height/2-50,150,50),"TIMES UP!");
+		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+100, 100,50),"Retry")){
+			levels = GameObject.FindGameObjectsWithTag("Level");
+			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
+			time = 100;
+		
+			//RESET PLAYERS POSITIONS
+			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
+			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+
+			nextLevel(levels[1].name);
+			
+			isPaused = false;
+			Time.timeScale = 1.0;
+		}
+	
+	}
 	
 	
 }
