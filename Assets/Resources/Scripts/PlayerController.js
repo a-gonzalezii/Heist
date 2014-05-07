@@ -11,9 +11,14 @@ var jump : KeyCode;
 
 var jumpAudio:AudioClip;
 
+var anim:Animator;
+var isPlayer1:boolean;
+
+
 function Awake(){
 	jumpAudio = Resources.Load("Sounds/jumpLowPitch",AudioClip);
-
+	anim = GetComponent(Animator);
+	anim.SetFloat("Speed",0f);
 }
 
 function jumpToUnlock(){
@@ -24,20 +29,29 @@ function FixedUpdate () {
 	//Move Left
 	if(Input.GetKey(moveLeft)){
 		rigidbody2D.velocity.x = -speed;
+		anim.SetFloat("Speed",1f);
 	//Move Right	
 	}else if(Input.GetKey(moveRight)){
 		rigidbody2D.velocity.x = speed;		
+		anim.SetFloat("Speed",1f);
 	//Move None
 	}else{
 		rigidbody2D.velocity.x = 0;
+		anim.SetFloat("Speed",0f);
 	}//Jump - seperate loop so you can jump and move
 	if(Input.GetKey(jump)){
-		if(!jumpIsLocked){//TODO: NEED TO CHANGE THIS FOR WHEN THEY ARE IN A SPACE THAT ONLY FITS THE USER/player icon
+		if(!jumpIsLocked){
 			rigidbody2D.velocity.y = jumpForce;
 			jumpIsLocked = true;
 			audio.PlayOneShot(jumpAudio);
 		}
 	}
+	
+}
+
+function Update(){
+	
+	
 }
 
 function setVariables(variables:Array){//, rightKey:KeyCode, jumpKey:KeyCode, newSpeed:float, jumpF:float){

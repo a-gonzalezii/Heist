@@ -829,6 +829,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &387749251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1124,6 +1126,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &502607396
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1210,6 +1214,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &545398747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1359,6 +1365,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &556550860
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1445,6 +1453,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &581989865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1764,6 +1774,7 @@ GameObject:
   - 61: {fileID: 903556943}
   - 50: {fileID: 903556942}
   - 82: {fileID: 903556947}
+  - 95: {fileID: 903556948}
   m_Layer: 0
   m_Name: Player2_BlueBox
   m_TagString: Player
@@ -1815,6 +1826,8 @@ MonoBehaviour:
   moveRight: 0
   jump: 0
   jumpAudio: {fileID: 0}
+  anim: {fileID: 0}
+  isPlayer1: 0
 --- !u!212 &903556945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1907,6 +1920,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!95 &903556948
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 903556941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a04dcb895c73704fa5232592524b169, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 1
+  m_HasTransformHierarchy: 1
 --- !u!1 &930327785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1997,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &930327789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2056,6 +2085,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &969047518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2131,6 +2162,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &974145374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2674,6 +2707,8 @@ MonoBehaviour:
   moveRight: 0
   jump: 0
   jumpAudio: {fileID: 0}
+  anim: {fileID: 0}
+  isPlayer1: 0
 --- !u!212 &1185351412
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2717,10 +2752,10 @@ Animator:
   m_GameObject: {fileID: 1185351408}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15edb305f78254954839d1936ae778bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 50703e87491bd8e4eb05000df00939b3, type: 2}
   m_CullingMode: 0
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
+  m_ApplyRootMotion: 0
+  m_AnimatePhysics: 1
   m_HasTransformHierarchy: 1
 --- !u!82 &1185351415
 AudioSource:
@@ -2906,6 +2941,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &1329514941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3537,6 +3574,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &1782106908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3863,7 +3902,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1954419867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.6733818, y: 9.04491138, z: -10}
+  m_LocalPosition: {x: 5.37521935, y: 9.04491138, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3981,6 +4020,8 @@ MonoBehaviour:
   step: 0
   startPosition: {x: 0, y: 0, z: 0}
   buttonClickAudio: {fileID: 0}
+  gateCloseAudio: {fileID: 0}
+  played: 1
 --- !u!212 &2041131176
 SpriteRenderer:
   m_ObjectHideFlags: 0

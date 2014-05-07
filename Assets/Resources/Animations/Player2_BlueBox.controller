@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Player1_RedBox
+  m_Name: Player2_BlueBox
   serializedVersion: 2
   m_AnimatorParameters:
   - m_Name: Speed
@@ -33,7 +33,7 @@ Transition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110256460}
+  m_DstState: {fileID: 110272281}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
@@ -44,13 +44,13 @@ Transition:
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
---- !u!1101 &110197871
+--- !u!1101 &110119767
 Transition:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110256460}
+  m_SrcState: {fileID: 110272281}
   m_DstState: {fileID: 110200000}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
@@ -67,28 +67,28 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: player1_idle
+  m_Name: player2_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 29fbc2936db50034ea90ca2f2be00bb2, type: 2}
+  - {fileID: 7400000, guid: 78e3ca46f2e6814489037dc14871380a, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 276, y: -36, z: 0}
+  m_Position: {x: 288, y: -48, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110256460
+--- !u!1102 &110272281
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: player1_walk
+  m_Name: player2_walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: e3b95a845a772424fa35d4e61ae8cb26, type: 2}
+  - {fileID: 7400000, guid: c5bec97e91ba3074687169208f2b8264, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 276, y: 60, z: 0}
+  m_Position: {x: 288, y: 72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -102,14 +102,14 @@ StateMachine:
   m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110200000}
-  - {fileID: 110256460}
+  - {fileID: 110272281}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110256460}
+      first: {fileID: 110272281}
       second:
-      - {fileID: 110197871}
+      - {fileID: 110119767}
     data:
       first: {fileID: 110200000}
       second:
