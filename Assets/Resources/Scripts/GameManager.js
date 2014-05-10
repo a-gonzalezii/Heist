@@ -15,7 +15,7 @@ var bgs:GameObject[];
 var positionFromStart = 0;
 var platformPosFromStart = 0;
 var bgPosFromStart = 0;
-var time: float = 100;
+var time: float = 50;
 var cameraWidth:float;
 var cameraLeftLimit:float;
 var cameraRightLimit:float;
@@ -25,6 +25,7 @@ var timeWarning = 20;
 var isPaused = false;
 var inWarning = false;
 var gameOver = false;
+var gameCompleted = false;
 
 var mainThemeAudio:AudioClip;
 var endWarningAudio:AudioClip;
@@ -290,6 +291,7 @@ function Awake(){
 			
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			child.GetComponent(BoxCollider2D).sharedMaterial = Resources.Load("Materials/Physics2dMaterial",PhysicsMaterial2D);
 			
 			//rescale to world then scale to parent
 			scaleTypeCast = componentTypeMap["Scale"];
@@ -430,7 +432,7 @@ function instantiateLevels(){
 	for(var i=0;i<levels.Length; i++){
 		var level_i = levels[i];
 		//SPRITE - WILL BE NONE FOR FINAL EDIT - SAME FOR MATERIAL
-		level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
+		//level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
 		//SCRIPT
 		if(level_i.GetComponent("LevelTrigger") == null){
 			level_i.AddComponent("LevelTrigger");
@@ -503,10 +505,14 @@ function extendPlatformAndBg(){
 
 // Delete the first level - called from LevelTrigger.js
 function nextLevel(l:String){
-	if(levels[1].name==l && levels.Length>2){
-		if(levels[1].name != "Next_Level1"){audio.PlayOneShot(checkPointAudio);;}
-		else{audio.PlayOneShot(spawnAudio);}
-		levels = levels[1:];
+	if(levels[1].name==l){
+		if(levels.Length > 2){
+			if(levels[1].name != "Next_Level1"){audio.PlayOneShot(checkPointAudio);;}
+			else{audio.PlayOneShot(spawnAudio);}
+			levels = levels[1:];
+		}else{
+			gameCompleted = true;
+		}
 		
 	}
 	
@@ -559,7 +565,7 @@ function FixedUpdate () {
 
 function Update(){
 
-	if(Input.GetKeyDown("escape")){
+	if(Input.GetKeyDown(KeyCode.P)){
 		isPaused = !isPaused;
 		Time.timeScale = (Time.timeScale+1.0)%2;
 	}
@@ -569,30 +575,11 @@ function Update(){
 function OnGUI(){
 
 	if(!isPaused){
-		//RESET BUTTON
-		if(GUI.Button(new Rect(Screen.width-121, 35, 121, 53),"RESET")){
-		
-			levels = GameObject.FindGameObjectsWithTag("Level");
-			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-			time = 100;
-		
-			//RESET PLAYERS POSITIONS
-			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
-			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
-			
-			
-			//RESET CAMERA POSITION
-			nextLevel(levels[1].name);
-			mainCamera.transform.position.x = cameraLeftLimit;
-		}
-	
 		//TIMER
 		GUI.contentColor = Color.black;
 		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
 	}else{//TODO: PAUSE SCREEN
-	
-			isPaused = false;
-			Time.timeScale = 1.0;
+			print("paused");
 	
 	}
 	if(gameOver){//GAME OVER SCREEN
@@ -622,10 +609,31 @@ function OnGUI(){
 			nextLevel(levels[1].name);
 			mainCamera.transform.position.x = cameraLeftLimit;
 			
-			isPaused = false;
+			//isPaused = false;
 			Time.timeScale = 1.0;
+			gameOver = false;
 		}
 	
+	}
+	if(gameCompleted){
+		Time.timeScale = 0.0;
+		GUI.Label(Rect(Screen.width/2-100,Screen.height/2-50,200,50),"Thank you for playing Coworkers:Late in Space Demo!");
+		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+50, 100,50),"Play Again")){
+			levels = GameObject.FindGameObjectsWithTag("Level");
+			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
+			time = 100;
+		
+			//RESET PLAYERS POSITIONS
+			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
+			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+
+			nextLevel(levels[1].name);
+			mainCamera.transform.position.x = cameraLeftLimit;
+			
+			//isPaused = false;
+			Time.timeScale = 1.0;
+			gameCompleted = false;
+		}
 	}
 	
 	
