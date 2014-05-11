@@ -50,7 +50,7 @@ function Awake(){
 	//		SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
 	//								PLATFORM()
 	//								LEVEL()
-	
+	time = 30;
 	//CAMERA
 	mainCamera = Camera.main;
 	//PLATFORMS
@@ -697,6 +697,13 @@ function OnGUI(){
 	if(!isPaused){
 		//TIMER
 		GUI.contentColor = Color.black;
+		if(inWarning){
+			if(Mathf.Round(time) == Mathf.Floor(time)){
+			GUI.contentColor = Color.red;
+			
+			}
+		}
+		print(Mathf.Round(time)%2==0);
 		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
 	}else{//TODO: PAUSE SCREEN
 			print("paused");
@@ -720,11 +727,15 @@ function OnGUI(){
 		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+100, 100,50),"Retry")){
 			levels = GameObject.FindGameObjectsWithTag("Level");
 			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-			time = 100;
+			time = 50;
 		
 			//RESET PLAYERS POSITIONS
 			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
 			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+
+			audio.Pause();
+			audio.clip = mainThemeAudio;
+			audio.Play();
 
 			nextLevel(levels[1].name);
 			mainCamera.transform.position.x = cameraLeftLimit;
@@ -741,11 +752,15 @@ function OnGUI(){
 		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+50, 100,50),"Play Again")){
 			levels = GameObject.FindGameObjectsWithTag("Level");
 			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-			time = 100;
+			time = 50;
 		
 			//RESET PLAYERS POSITIONS
 			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
 			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+
+			audio.Pause();
+			audio.clip = mainThemeAudio;
+			audio.Play();
 
 			nextLevel(levels[1].name);
 			mainCamera.transform.position.x = cameraLeftLimit;

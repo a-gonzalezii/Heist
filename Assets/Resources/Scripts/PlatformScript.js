@@ -19,4 +19,7 @@ function OnCollisionEnter2D (hitInfo : Collision2D){
 	}
 }
 
+
+
+
 function setVariables(variables:Array){}

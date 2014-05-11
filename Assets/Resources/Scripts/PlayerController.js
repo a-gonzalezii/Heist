@@ -24,6 +24,9 @@ function Awake(){
 function jumpToUnlock(){
 	jumpIsLocked = false;
 }
+function jumpToLock(){
+	jumpIsLocked = true;
+}
 
 function FixedUpdate () {
 	//Move Left
