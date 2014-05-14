@@ -535,7 +535,8 @@ function FixedUpdate () {
 	}
 	
 	//Set camera to the current lvl
-	var xPos = Vector3.MoveTowards(mainCamera.transform.position, desiredLocation, 5*Time.deltaTime);
+	//TODO: IF YOU WANT THE CAMERA TO MOVE FASTER CHANGE THE 5 BELOW
+	var xPos = Vector3.MoveTowards(mainCamera.transform.position, desiredLocation, 10*Time.deltaTime);
 	mainCamera.transform.Translate(xPos-mainCamera.transform.position);
 	//print(mainCamera.orthographicSize*Screen.width/Screen.height);
 	
@@ -624,6 +625,7 @@ function OnGUI(){
 			
 			isPaused = false;
 			Time.timeScale = 1.0;
+			gameOver = false;
 		}
 	
 	}
