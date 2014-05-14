@@ -24,16 +24,21 @@ function Awake(){
 function jumpToUnlock(){
 	jumpIsLocked = false;
 }
+function jumpToLock(){
+	jumpIsLocked = true;
+}
 
 function FixedUpdate () {
 	//Move Left
 	if(Input.GetKey(moveLeft)){
 		rigidbody2D.velocity.x = -speed;
 		anim.SetFloat("Speed",1f);
+		
 	//Move Right	
 	}else if(Input.GetKey(moveRight)){
 		rigidbody2D.velocity.x = speed;		
 		anim.SetFloat("Speed",1f);
+		
 	//Move None
 	}else{
 		rigidbody2D.velocity.x = 0;

@@ -15,7 +15,7 @@ var bgs:GameObject[];
 var positionFromStart = 0;
 var platformPosFromStart = 0;
 var bgPosFromStart = 0;
-var time: float = 100;
+var time: float = 50;
 var cameraWidth:float;
 var cameraLeftLimit:float;
 var cameraRightLimit:float;
@@ -25,6 +25,7 @@ var timeWarning = 20;
 var isPaused = false;
 var inWarning = false;
 var gameOver = false;
+var gameCompleted = false;
 
 var mainThemeAudio:AudioClip;
 var endWarningAudio:AudioClip;
@@ -49,7 +50,7 @@ function Awake(){
 	//		SET GLOBAL VARIABLES - PLAYER(SPEED, CONTROLS, JUMP_FORCE, ACCELERATION)
 	//								PLATFORM()
 	//								LEVEL()
-	
+	time = 30;
 	//CAMERA
 	mainCamera = Camera.main;
 	//PLATFORMS
@@ -87,8 +88,124 @@ function Awake(){
 	//		Objects are represented as a Map {"Information to Set" : Value}
 	//			Examples are {Position: Vector3 Position; Sprite: String SpriteLocation; Variables: Array of Variables for Method setVariables(Array)}
 	//TODO: CHANGE HARD CODED VALUES
-	//TODO: "SCALE" = Vector3()
-	//TODO: PHYSICS MATERIAL
+	
+	
+	//LEVEL 5
+	
+				var level5_Button1Mapping = {};
+				level5_Button1Mapping["Position"] = new Vector3(5f, topPlatformFloor, 0f);
+				level5_Button1Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button1Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level5_Button1Mapping["Variables"] = ["Next_Level5/Gate 2",3,4,0];
+				level5_Button1Mapping["Scale"] = new Vector3(1,1,1);
+				
+				var level5_Button2Mapping = {};
+				level5_Button2Mapping["Position"] = new Vector3(11f,bottomPlatformFloor, 0f);
+				level5_Button2Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button2Mapping["Script"]   = "InteractibleScript";
+				level5_Button2Mapping["Variables"] = ["Next_Level5/Gate 1",3,3.5,0];
+				level5_Button2Mapping["Scale"] = new Vector3(1,1,1);
+	
+	
+				var level5_Button3Mapping = {};
+				level5_Button3Mapping["Position"] = new Vector3(11f, bottomPlatformFloor, 0f);
+				level5_Button3Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button3Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level5_Button3Mapping["Variables"] = ["Next_Level5/Gate 3",3,3,0];
+				level5_Button3Mapping["Scale"] = new Vector3(1,1,1);
+				
+				var level5_Button4Mapping = {};
+				level5_Button4Mapping["Position"] = new Vector3(19f,topPlatformFloor+3f, 0f);
+				level5_Button4Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button4Mapping["Script"]   = "InteractibleScript";
+				level5_Button4Mapping["Variables"] = ["Next_Level5/Gate 4",3,4,0];
+				level5_Button4Mapping["Scale"] = new Vector3(1,1,1);
+	
+	
+				var level5_Button5Mapping = {};
+				level5_Button5Mapping["Position"] = new Vector3(19f, topPlatformFloor+3f, 0f);
+				level5_Button5Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button5Mapping["Script"]   = "InteractibleScript";//, ["Next_Level0/Gate 1",3,4,0]];//changedObj, Speed, Ydist, Xdist
+				level5_Button5Mapping["Variables"] = ["Next_Level5/Gate 8",3,4,0];
+				level5_Button5Mapping["Scale"] = new Vector3(1,1,1);
+				
+				var level5_Button6Mapping = {};
+				level5_Button6Mapping["Position"] = new Vector3(19f,bottomPlatformFloor+3f, 0f);
+				level5_Button6Mapping["Sprite"]   = "Materials/buttonGreen";
+				level5_Button6Mapping["Script"]   = "InteractibleScript";
+				level5_Button6Mapping["Variables"] = ["Next_Level5/Gate 7",3,4,0];
+				level5_Button6Mapping["Scale"] = new Vector3(1,1,1);
+		
+			var level5_ButtonArray = [level5_Button1Mapping, level5_Button2Mapping, level5_Button3Mapping, level5_Button4Mapping, level5_Button5Mapping, level5_Button6Mapping];
+	
+				var level5_Gate1Mapping = {};
+				level5_Gate1Mapping["Position"] = new Vector3(8f,topPlatformFloor,0);
+				level5_Gate1Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate1Mapping["Script"]   = "PlatformScript";
+				level5_Gate1Mapping["Variables"] = [];
+				level5_Gate1Mapping["Scale"] = new Vector3(1,1,1);
+				
+				var level5_Gate2Mapping = {};
+				level5_Gate2Mapping["Position"] = new Vector3(8f,bottomPlatformFloor,0);
+				level5_Gate2Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate2Mapping["Script"]   = "PlatformScript";
+				level5_Gate2Mapping["Variables"] = [];
+				level5_Gate2Mapping["Scale"] = new Vector3(1,1,1);
+	
+	
+				var level5_Gate3Mapping = {};
+				level5_Gate3Mapping["Position"] = new Vector3(13,topPlatformFloor,0);
+				level5_Gate3Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate3Mapping["Script"]   = "PlatformScript";
+				level5_Gate3Mapping["Variables"] = [];
+				level5_Gate3Mapping["Scale"] = new Vector3(1,.1,1);
+				
+				var level5_Gate4Mapping = {};
+				level5_Gate4Mapping["Position"] = new Vector3(13,bottomPlatformFloor,0);
+				level5_Gate4Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate4Mapping["Script"]   = "PlatformScript";
+				level5_Gate4Mapping["Variables"] = [];
+				level5_Gate4Mapping["Scale"] = new Vector3(1,.1,1);
+	
+				var level5_Gate5Mapping = {};
+				level5_Gate5Mapping["Position"] = new Vector3(17,topPlatformFloor+2.8,0);
+				level5_Gate5Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate5Mapping["Script"]   = "PlatformScript";
+				level5_Gate5Mapping["Variables"] = [];
+				level5_Gate5Mapping["Scale"] = new Vector3(3,.1,1);
+				
+				var level5_Gate6Mapping = {};
+				level5_Gate6Mapping["Position"] = new Vector3(17,bottomPlatformFloor+2.8,0);
+				level5_Gate6Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate6Mapping["Script"]   = "PlatformScript";
+				level5_Gate6Mapping["Variables"] = [];
+				level5_Gate6Mapping["Scale"] = new Vector3(3,.1,1);
+	
+	
+				var level5_Gate7Mapping = {};
+				level5_Gate7Mapping["Position"] = new Vector3(25,topPlatformFloor,0);
+				level5_Gate7Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate7Mapping["Script"]   = "PlatformScript";
+				level5_Gate7Mapping["Variables"] = [];
+				level5_Gate7Mapping["Scale"] = new Vector3(1,1,1);
+				
+				var level5_Gate8Mapping = {};
+				level5_Gate8Mapping["Position"] = new Vector3(25,bottomPlatformFloor,0);
+				level5_Gate8Mapping["Sprite"]   = "Materials/gate";
+				level5_Gate8Mapping["Script"]   = "PlatformScript";
+				level5_Gate8Mapping["Variables"] = [];
+				level5_Gate8Mapping["Scale"] = new Vector3(1,1,1);
+			
+			var level5_GateArray = [level5_Gate1Mapping, level5_Gate2Mapping, level5_Gate3Mapping, level5_Gate4Mapping,
+							level5_Gate5Mapping, level5_Gate6Mapping, level5_Gate7Mapping, level5_Gate8Mapping];
+		var level5_childrenMapping = {};
+		level5_childrenMapping["Button"] = level5_ButtonArray;
+		level5_childrenMapping["Gate"] = level5_GateArray;
+	
+	
+	
+	
+	
 	
 	//LEVEL4
 	
@@ -247,7 +364,7 @@ function Awake(){
 				
 	//LIST OF LEVELS
 	var levelArrangement = [level0_childrenMapping, level2_childrenMapping, level1_childrenMapping, 
-						level3_childrenMapping, level4_childrenMapping];
+						level3_childrenMapping, level4_childrenMapping, level5_childrenMapping];
 			
 	// 		FOR EACH LEVEL { FOR EACH CHILD { 
 	//			SET ABSOLUTES - TRANSFORM(RELATIVE TO PARENT), SPRITERENDERER, MONOSCRIPT
@@ -290,6 +407,7 @@ function Awake(){
 			
 			//SPRITE
 			child.gameObject.GetComponent(SpriteRenderer).sprite = Resources.Load(componentTypeMap["Sprite"],Sprite);
+			child.GetComponent(BoxCollider2D).sharedMaterial = Resources.Load("Materials/Physics2dMaterial",PhysicsMaterial2D);
 			
 			//rescale to world then scale to parent
 			scaleTypeCast = componentTypeMap["Scale"];
@@ -350,7 +468,8 @@ function instantiatePlatforms(){
 		var platform_i = platforms[i];
 		
 		//SET SPRITE 
-		if(i<2){
+		if(i==0){}
+		else if(i==1){
 			platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform1",Sprite);
 		}else{platform_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/platform2",Sprite);}
 		platformExtents = platform_i.renderer.bounds.extents;
@@ -360,7 +479,10 @@ function instantiatePlatforms(){
 		platform_i.GetComponent(BoxCollider2D).size = (reSizingCollisionBox);	
 		
 		
-		//SET MATERIAL - SHOULD BE DEFAULT OTHERWISE WE NEED TO LOOK INTO
+		//Remove platform 0 - Ideally would completely remove but its used to let levels
+		if(i==0){
+		//	platform_i.
+		}
 		
 		//SET SCRIPT
 		if(i > 0 && platform_i.GetComponent("PlatformScript") == null){
@@ -430,7 +552,7 @@ function instantiateLevels(){
 	for(var i=0;i<levels.Length; i++){
 		var level_i = levels[i];
 		//SPRITE - WILL BE NONE FOR FINAL EDIT - SAME FOR MATERIAL
-		level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
+		//level_i.GetComponent(SpriteRenderer).sprite = Resources.Load("Materials/PinkBox_50x50",Sprite);
 		//SCRIPT
 		if(level_i.GetComponent("LevelTrigger") == null){
 			level_i.AddComponent("LevelTrigger");
@@ -503,10 +625,14 @@ function extendPlatformAndBg(){
 
 // Delete the first level - called from LevelTrigger.js
 function nextLevel(l:String){
-	if(levels[1].name==l && levels.Length>2){
-		if(levels[1].name != "Next_Level1"){audio.PlayOneShot(checkPointAudio);;}
-		else{audio.PlayOneShot(spawnAudio);}
-		levels = levels[1:];
+	if(levels[1].name==l){
+		if(levels.Length > 2){
+			if(levels[1].name != "Next_Level1"){audio.PlayOneShot(checkPointAudio);;}
+			else{audio.PlayOneShot(spawnAudio);}
+			levels = levels[1:];
+		}else{
+			gameCompleted = true;
+		}
 		
 	}
 	
@@ -560,7 +686,7 @@ function FixedUpdate () {
 
 function Update(){
 
-	if(Input.GetKeyDown("escape")){
+	if(Input.GetKeyDown(KeyCode.P)){
 		isPaused = !isPaused;
 		Time.timeScale = (Time.timeScale+1.0)%2;
 	}
@@ -570,30 +696,18 @@ function Update(){
 function OnGUI(){
 
 	if(!isPaused){
-		//RESET BUTTON
-		if(GUI.Button(new Rect(Screen.width-121, 35, 121, 53),"RESET")){
-		
-			levels = GameObject.FindGameObjectsWithTag("Level");
-			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-			time = 100;
-		
-			//RESET PLAYERS POSITIONS
-			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
-			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
-			
-			
-			//RESET CAMERA POSITION
-			nextLevel(levels[1].name);
-			mainCamera.transform.position.x = cameraLeftLimit;
-		}
-	
 		//TIMER
 		GUI.contentColor = Color.black;
+		if(inWarning){
+			if(Mathf.Round(time) == Mathf.Floor(time)){
+			GUI.contentColor = Color.red;
+			
+			}
+		}
+		print(Mathf.Round(time)%2==0);
 		GUI.Label(new Rect(Screen.width/2-10,35, 120,50),time.ToString("F2"));
 	}else{//TODO: PAUSE SCREEN
-	
-			isPaused = false;
-			Time.timeScale = 1.0;
+			print("paused");
 	
 	}
 	if(gameOver){//GAME OVER SCREEN
@@ -614,20 +728,48 @@ function OnGUI(){
 		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+100, 100,50),"Retry")){
 			levels = GameObject.FindGameObjectsWithTag("Level");
 			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
-			time = 100;
+			time = 50;
 		
 			//RESET PLAYERS POSITIONS
 			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
 			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
 
+			audio.Pause();
+			audio.clip = mainThemeAudio;
+			audio.Play();
+
 			nextLevel(levels[1].name);
 			mainCamera.transform.position.x = cameraLeftLimit;
 			
-			isPaused = false;
+			//isPaused = false;
 			Time.timeScale = 1.0;
 			gameOver = false;
 		}
 	
+	}
+	if(gameCompleted){
+		Time.timeScale = 0.0;
+		GUI.Label(Rect(Screen.width/2-100,Screen.height/2-50,200,50),"Thank you for playing Coworkers:Late in Space Demo!");
+		if(GUI.Button(Rect((Screen.width)/2-50,Screen.height/2+50, 100,50),"Play Again")){
+			levels = GameObject.FindGameObjectsWithTag("Level");
+			levels.Sort(levels, function(g1,g2) String.Compare(g1.name, g2.name));
+			time = 50;
+		
+			//RESET PLAYERS POSITIONS
+			players[0].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[1].transform.position.y+1, 0f);
+			players[1].transform.position = new Vector3(levels[1].transform.position.x+2, platforms[2].transform.position.y+1, 0f);
+
+			audio.Pause();
+			audio.clip = mainThemeAudio;
+			audio.Play();
+
+			nextLevel(levels[1].name);
+			mainCamera.transform.position.x = cameraLeftLimit;
+			
+			//isPaused = false;
+			Time.timeScale = 1.0;
+			gameCompleted = false;
+		}
 	}
 	
 	
